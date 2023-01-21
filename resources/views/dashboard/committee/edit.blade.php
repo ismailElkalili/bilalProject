@@ -20,12 +20,17 @@
         <!-- select -->
         <div class="form-group">
           <label>Boss</label>
-          <select class="form-control" name="bossID" id="bossID">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+          <select class="form-control" name="bossID" id="bossID" >
+            @foreach ($teachers as $teacher)
+
+            @if ($committee->matser_id == $teacher -> id )
+            <option selected value="{{$teacher -> id}}" >{{$teacher -> name}}</option>
+            @else{
+                <option  value="{{$teacher -> id}}" >{{$teacher -> name}}</option>
+            }
+            @endif
+            
+            @endforeach
           </select>
         </div>
       </div>

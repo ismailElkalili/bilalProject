@@ -10,14 +10,16 @@ class CommitteeController extends Controller
 {
     public function index()
     {
-        $itemCommittee = DB::table('committees')->get();
-        return view('dashboard.committee.index');
+        $committees = DB::table('committees')->get();
+        return view('dashboard.committee.index')->with('committees',$committees);
     }
 
     public function create(Request $request)
     {
-       
-        return view('dashboard.committee.create');
+       $teachers = DB::table('teachers')->select(
+        'id',
+        'name')->get();
+        return view('dashboard.committee.create')->with('teachers' , $teachers);
 
     }
 
@@ -43,8 +45,13 @@ class CommitteeController extends Controller
     public function edit($committeeID)
     {
         $committee = DB::table('committees')->where('id', '=', $committeeID)->first();
+        $teachers = DB::table('teachers')->select(
+            'id',
+            'name')->get();
+
         return view('dashboard.committee.edit')
-        ->with('committee',$committee);
+        ->with('committee',$committee)
+        ->with('teachers',$teachers);
 
     }
 
