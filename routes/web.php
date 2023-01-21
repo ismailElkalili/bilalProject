@@ -30,9 +30,9 @@ Route::controller(TeacherController::class)->group(function () {
     Route::get('/teacher', 'index');
     Route::post('/teacher/create', 'create');
     Route::post('/teacher/store', 'store');
-    Route::post('/teacher/update', 'update');
+    Route::post('/teacher/update/{id}', 'update');
     Route::post('/teacher/edit', 'edit');
-    Route::post('/teacher/destroy', 'destroy');
+    Route::post('/teacher/destroy/{id}', 'destroy');
     Route::get('/teacher/{id}', 'show');
 
 });
