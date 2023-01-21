@@ -23,7 +23,16 @@ class TeacherController extends Controller
     }
     function show($id)
     {
-
+        $teachers = DB::table('teachers')->select(
+            'id',
+            'name',
+            'date_of_birth',
+            'phone_number',
+            'whatsapp_number',
+            'nation_id'
+        )->where('id', $id)->first();
+        // dd($teachers);
+        return view('dashboard.teacher.index')->with('teachers', $teachers);
     }
     function create()
     {
