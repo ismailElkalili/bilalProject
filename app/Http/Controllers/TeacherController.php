@@ -23,16 +23,27 @@ class TeacherController extends Controller
     }
     function show($id)
     {
-        $teachers = DB::table('teachers')->select(
+        $commname = '';
+        $comm = DB::table('committees')->get();
+        $teacher = DB::table('teachers')->select(
             'id',
             'name',
             'date_of_birth',
             'phone_number',
             'whatsapp_number',
-            'nation_id'
+            'nation_id',
+            'specialization',
+            'qualification',
+            'committees_id'
         )->where('id', $id)->first();
+        foreach ($comm as $com) {
+            if ($com->id == $teacher->committees_id) {
+                $commname = $com->name;
+            }
+        }
         // dd($teachers);
-        return view('dashboard.teacher.index')->with('teachers', $teachers);
+        return view('dashboard.teacher.show')->with('teacher', $teacher)->with('commname', $commname);
+
     }
     function create()
     {

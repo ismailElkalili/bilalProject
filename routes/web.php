@@ -37,6 +37,6 @@ Route::controller(TeacherController::class)->group(function () {
     Route::post('/teacher/update/{id}', 'update');
     Route::post('/teacher/edit', 'edit');
     Route::post('/teacher/destroy/{id}', 'destroy');
-    Route::get('/teacher/{id}', 'show');
+    Route::get('/teacher/show/{id}', 'show');
 
 });

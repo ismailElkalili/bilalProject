@@ -31,7 +31,7 @@
 
                             </td>
                             <td>
-                                <a class="btn btn-info" href="{{ URL('teacher/' . $teacher->id) }}">عرض</a>
+                                <a class="btn btn-info" href="{{ URL('teacher/show/' . $teacher->id) }}">عرض</a>
 
                             </td>
                             <td>

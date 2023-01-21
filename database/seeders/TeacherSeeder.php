@@ -24,6 +24,7 @@ class TeacherSeeder extends Seeder
             'whatsapp_number' => '0598147023',
             'specialization' => 'IT',
             'qualification' => 'Bachelor',
+            'committees_id' => '17',
         ]);
         DB::table('teachers')->insert([
             'name' => 'Mostafe',
@@ -33,6 +34,7 @@ class TeacherSeeder extends Seeder
             'whatsapp_number' => '0594564221',
             'qualification' => 'Bachelor',
             'specialization' => 'IT Man',
+            'committees_id' => '20',
         ]);
         DB::table('teachers')->insert([
             'name' => 'Ismail',
