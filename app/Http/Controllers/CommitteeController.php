@@ -13,9 +13,9 @@ class CommitteeController extends Controller
         return view('dashborard_layout.dashborard_main');
     }
 
-    public function create()
+    public function create(Request $request)
     {
-    
+        return view('dashboard.committee.create');
     }
 
     public function store(Request $request)

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\TeacherController;
+use App\Http\Controllers\CommitteeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +16,10 @@ use App\Http\Controllers\Api\TeacherController;
 */
 
 Route::get('/', function () {
-    return view('dashboard-layout\dashboard-main');
+    return view('dashboard_layout\dashboard_main');
 });
+
+Route::get('/dashborad/committees/create',[CommitteeController::class,'create'])
+->name('dashboard\committee\create');
 
 Route::get("data",[TeacherController::class,'getData']);
