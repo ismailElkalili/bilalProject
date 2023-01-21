@@ -22,6 +22,10 @@ Route::get('/', function () {
 
 Route::get('/dashborad/committees/create', [CommitteeController::class, 'create'])
     ->name('dashboard\committee\create');
+Route::post('/dashborad/committees/store', [CommitteeController::class,'store']);
+Route::get('/dashborad/committees/index', [CommitteeController::class , 'index']);
+Route::get('/dashborad/committees/edit/{committeeID}', [CommitteeController::class,'edit']);
+Route::post('/dashborad/committees/update/{committeeID}', [CommitteeController::class,'update']);
 
 Route::get("data", [TeacherController::class, 'getData']);
 Route::get("data", [TeacherControllerApi::class, 'getData']);
