@@ -10,6 +10,7 @@ class TeacherController extends Controller
     function index()
     {
         $teachers = DB::table('teachers')->select(
+            'id',
             'name',
             'date_of_birth',
             'phone_number',
