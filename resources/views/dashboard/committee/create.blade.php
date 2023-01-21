@@ -21,11 +21,9 @@
         <div class="form-group">
           <label>Boss</label>
           <select class="form-control" name="bossID" id="bossID">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+            @foreach ($teachers as $teacher)
+            <option value="{{$teacher -> id}}" >{{$teacher -> name}}</option>
+            @endforeach
           </select>
         </div>
       </div>
