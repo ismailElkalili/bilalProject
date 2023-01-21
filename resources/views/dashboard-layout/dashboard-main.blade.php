@@ -190,7 +190,7 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-          
+          {{--  fuck you bitch   --}}
           </li>
         
         </ul>
