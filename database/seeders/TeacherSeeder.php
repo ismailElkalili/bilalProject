@@ -17,25 +17,28 @@ class TeacherSeeder extends Seeder
     {
         DB::table('teachers')->insert([
             'name' => 'Ismail',
-            'phone' => '0598147023',
+            'nation_id' => '120221408',
+            'phone_number' => '0598147023',
             'date_of_birth' => '1999-10-10',
-            'whatsapp' => '0598147023',
+            'whatsapp_number' => '0598147023',
             'specialization' => 'IT',
             'qualification' => 'Bachelor',
         ]);
         DB::table('teachers')->insert([
             'name' => 'Mostafe',
-            'phone' => '0594564221',
+            'phone_number' => '0594564221',
+            'nation_id' => '120221408',
             'date_of_birth' => '1999-03-10',
-            'whatsapp' => '0594564221',
+            'whatsapp_number' => '0594564221',
             'qualification' => 'Bachelor',
             'specialization' => 'IT Man',
         ]);
         DB::table('teachers')->insert([
             'name' => 'Ismail',
-            'phone' => '0598147023',
+            'phone_number' => '0598147023',
+            'nation_id' => '120221408',
             'date_of_birth' => '1999-12-12',
-            'whatsapp' => '0598147023',
+            'whatsapp_number' => '0598147023',
             'qualification' => 'Bachelor',
             'specialization' => 'Man IT',
         ]);

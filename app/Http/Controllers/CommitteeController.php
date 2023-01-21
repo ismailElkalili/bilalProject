@@ -9,18 +9,20 @@ class CommitteeController extends Controller
 {
     public function index()
     {
-       $itemCommittee = DB::table('committees')->get();
+        $itemCommittee = DB::table('committees')->get();
         return view('dashborard_layout.dashborard_main');
     }
 
     public function create(Request $request)
     {
+
         return view('dashboard.committee.create');
+
     }
 
     public function store(Request $request)
     {
-    
+
     }
 
 
@@ -28,7 +30,7 @@ class CommitteeController extends Controller
     {
 
     }
-  
+
     public function update(Request $request, $committeeID)
     {
 
