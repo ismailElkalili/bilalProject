@@ -278,6 +278,13 @@
             <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
             <!-- AdminLTE App -->
             <script src="{{ asset('dashboard-assets/js/adminlte.min.js') }}"></script>
+
+            <script src="{{ asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+            <script>
+                $("input[data-bootstrap-switch]").each(function() {
+                    $(this).bootstrapSwitch('state', $(this).prop('checked'));
+                })
+            </script>
 </body>
 
 </html>
