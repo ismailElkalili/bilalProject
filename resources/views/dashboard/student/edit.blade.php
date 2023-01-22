@@ -24,6 +24,13 @@
       </div>
 
       <div class="form-group row" style="position: static; display: inline;">
+        <div class="col-sm-10">
+            <label for="dob" class="col-sm-4 col-form-label">تاريخ الميلاد</label>
+            <input type="date" value="{{$student->date_of_birth}}" class="form-control" name="dob" id="dob"
+                placeholder="تاريخ الميلاد">
+        </div>
+
+      <div class="form-group row" style="position: static; display: inline;">
         <label for="address" class="col-sm-4 col-form-label">العنوان</label>
         <div class="col-sm-10">
           <input type="text" class="form-control" value="{{$student->address}}" name="address" id="address" placeholder="address">

@@ -1,41 +1,39 @@
 @extends('dashboard_layout.dashboard_main')
 @section("forms")
-<form action="{{URL('/student/store')}}" method="POST" style="margin-top: 40px">
+<form action="{{URL('/student/'.$student->id)}}" method="GET" style="margin-top: 40px">
     @csrf
     <div class="form-group row" style="position: static; display: inline;">
       <label for="studentName" class="col-sm-4 col-form-label">اسم الطالب</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" name="studentName" id="studentName" placeholder="اسم الطالب">
+        <input disabled type="text" class="form-control" value="{{$student->name}}" name="studentName" id="studentName" placeholder="student Name">
       </div>
     </div>
 
     <div class="form-group row" style="position: static; display: inline;">
         <label for="nationid" class="col-sm-4 col-form-label">رقم الهوية</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="nationid" id="nationid" placeholder="رقم الهوية">
+          <input disabled type="text" class="form-control" value="{{$student->nation_id}}" name="nationid" id="nationid" placeholder="nationid">
         </div>
       </div>
 
       <div class="form-group row" style="position: static; display: inline;">
         <label for="phonenumber" class="col-sm-4 col-form-label">رقم الجوال</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="phonenumber" id="phonenumber" placeholder="رقم الجوال">
+          <input disabled type="text" class="form-control" value="{{$student->phone_number}}"  name="phonenumber" id="phonenumber" placeholder="phonenumber">
         </div>
       </div>
 
       <div class="form-group row" style="position: static; display: inline;">
         <div class="col-sm-10">
             <label for="dob" class="col-sm-4 col-form-label">تاريخ الميلاد</label>
-            <input type="date" class="form-control" name="dob" id="dob"
+            <input disabled type="date" value="{{$student->date_of_birth}}" class="form-control" name="dob" id="dob"
                 placeholder="تاريخ الميلاد">
         </div>
-
-    </div>
 
       <div class="form-group row" style="position: static; display: inline;">
         <label for="address" class="col-sm-4 col-form-label">العنوان</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="address" id="address" placeholder="العنوان">
+          <input disabled type="text" class="form-control" value="{{$student->address}}" name="address" id="address" placeholder="address">
         </div>
       </div>
 
@@ -43,7 +41,7 @@
       <div class="form-group row" style="position: static; display: inline;">
         <label for="whatsappnumber" class="col-sm-4 col-form-label">رقم الواتساب</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="whatsappnumber" id="whatsappnumber" placeholder="الواتساب">
+          <input disabled type="text" class="form-control" value="{{$student->whatsapp_number}}" name="whatsappnumber" id="whatsappnumber" placeholder="whatsappnumber">
         </div>
       </div>
 
@@ -51,7 +49,7 @@
       <div class="form-group row" style="position: static; display: inline;">
         <label for="fatherjob" class="col-sm-4 col-form-label">وظيفة الاب</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="fatherjob" id="fatherjob" placeholder="وظيفة الأب">
+          <input disabled type="text" class="form-control" value="{{$student->father_job}}" name="fatherjob" id="fatherjob" placeholder="fatherjob">
         </div>
       </div>
 
@@ -59,7 +57,7 @@
       <div class="form-group row" style="position: static; display: inline;">
         <label for="nationality" class="col-sm-4 col-form-label">الجنسية</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="nationality" id="nationality" placeholder="الجنسية">
+          <input disabled type="text" class="form-control" value="{{$student->nationality}}" name="nationality" id="nationality" placeholder="nationality">
         </div>
       </div>
 
@@ -67,9 +65,16 @@
         <!-- select -->
         <div class="form-group">
           <label>القسم</label>
-          <select class="form-control" name="departmentID" id="departmentID">
+          <select disabled class="form-control" name="departmentID" id="departmentID">
              @foreach ($departments as $department)
-            <option value="{{$department -> id}}">{{$department -> name}}</option>
+             @if ($department->id == $student->id )
+             <option selected value="{{$department -> id}}">{{$department -> name}}</option>
+             <
+             @else{
+                <option value="{{$department -> id}}">{{$department -> name}}</option>
+             }
+             @endif
+            
             @endforeach
           </select>
         </div>
@@ -79,9 +84,18 @@
         <!-- select -->
         <div class="form-group">
           <label>الحلقة</label>
-          <select class="form-control" name="classesID" id="classesID">
+          <select disabled class="form-control" name="classesID" id="classesID">
              @foreach ($classes as $class)
-            <option value="{{$class -> id}}">{{$class -> name}}</option>
+
+             @if ($department->id == $student->id )
+             
+             <option selected value="{{$class -> id}}">{{$class -> name}}</option>
+             @else{
+                <option value="{{$class -> id}}">{{$class -> name}}</option>
+             }
+             @endif
+
+           
             @endforeach
           </select>
         </div>
@@ -89,7 +103,7 @@
       
     <div class="form-group row" style="margin-top: 35px;position: static;  display: inline;">
       <div class="col-sm-10">
-        <button type="submit" class="btn btn-primary">إضافة</button>
+        <button type="submit" class="btn btn-primary">Add</button>
       </div>
     </div>
 

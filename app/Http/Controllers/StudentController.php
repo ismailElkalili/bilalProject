@@ -62,7 +62,7 @@ class StudentController extends Controller
             'dapartment_id' => $request['departmentID'],
             'class_id' => $request['classesID'],
             'state' => '0',
-            'date_of_birth' => '1999-01-10',
+            'date_of_birth' => $request['dob'],
 
         ]);
 
@@ -98,9 +98,23 @@ class StudentController extends Controller
             'dapartment_id' => $request['departmentID'],
             'class_id' => $request['classesID'],
             'state' => '0',
-            'date_of_birth' => '1999-01-10',
+            'date_of_birth' => $request['dob'],
         ]);
         return redirect()->action([StudentController::class, 'index']);
     }
 
+    public function show($studentID){
+
+        $student = DB::table('students')->where('id', '=', $studentID)->first();
+        $departments = DB::table('departments')
+            ->get();
+
+        $classes = DB::table('classes')
+            ->get();
+
+        return view('dashboard.student.show')
+            ->with('student', $student)
+            ->with('departments', $departments)
+            ->with('classes', $classes);
+    }
 }

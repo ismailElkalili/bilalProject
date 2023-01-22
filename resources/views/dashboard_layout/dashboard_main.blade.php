@@ -215,7 +215,7 @@
                             </a>
                             <ul class="nav nav-treeview" style="display: none;">
                                 <li class="nav-item">
-                                    <a href="{{ URL('/dashborad/committees/index') }}" class="nav-link">
+                                    <a href="{{ URL('/committees') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>عرض اللجان</p>
                                     </a>
@@ -253,6 +253,57 @@
 
                             </ul>
                         </li>
+
+                        <li class="nav-item menu-close">
+                            <a href="#" class="nav-link ">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    الأقسام
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <li class="nav-item">
+                                    <a href="{{ URL('/departments') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>عرض الأقسام</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ URL('/departments/create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>إضافة قسم</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        
+                        <li class="nav-item menu-close">
+                            <a href="#" class="nav-link ">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    الحلقات
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <li class="nav-item">
+                                    <a href="{{ URL('/classes') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>عرض الحلقات</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ URL('/classes/create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>إضافة حلقة</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
                     </ul>
                 </nav>
 
