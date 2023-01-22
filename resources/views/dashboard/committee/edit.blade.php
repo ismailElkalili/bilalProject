@@ -1,6 +1,6 @@
 @extends('dashboard_layout.dashboard_main')
 @section("forms")
-<form action="{{URL('/dashborad/committees/update/'.$committee->id)}}" method="POST" style="margin-top: 40px">
+<form action="{{URL('/committees/update/'.$committee->id)}}" method="POST" style="margin-top: 40px">
     @csrf
     <div class="form-group row" style="position: static; display: inline;">
       <label for="committeeName" class="col-sm-4 col-form-label">Committee Name</label>
