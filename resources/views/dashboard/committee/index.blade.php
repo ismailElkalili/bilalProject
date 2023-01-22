@@ -1,25 +1,22 @@
 @extends('dashboard_layout.dashboard_main')
 @section('forms')
-
-<a class="btn btn-primary" href="{{ URL('/committees/create/') }}">اضافة</a>
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">اللجان</h3>
-        </div>
-        <div class="card-body">
-            <table class="table table-bordered">
+<div class="card ">
+    <div class="card-header">
+        <h3 class="card-title float-right" style="font-size: 25px">اللجان</h3>
+        <a class="btn btn-info float-left" href="{{ URL('/committees/create') }}">اضافة</a>
+    </div>
+    <div class="card-body float-right">
+        <table class="table table-bordered float-right" style="text-align: right">
                 <thead>
-                    <th style="width: 10px">الرقم</th>
+                    <th style="width: 20px"></th>
+                    <th style="width: 20px"></th>
+                    <th style="width: 20px"></th>
                     <th>اسم اللجنة</th>
-                    <th style="width: 20px"></th>
-                    <th style="width: 20px"></th>
-                    <th style="width: 20px"></th>
+                    <th style="width: 10px">الرقم</th>
                 </thead>
                 <tbody>
                     @foreach ($committees as $committee)
                         <tr>
-                            <td>{{ $committee->id }}</td>
-                            <td>{{ $committee->name }}</td>
                             <td>
                                 <a class="btn btn-primary" href="{{ URL('/committees/edit/' . $committee->id) }}">تعديل</a>
 
@@ -35,6 +32,8 @@
                                     <button type="sumbit" class="btn btn-danger">حذف</button>
                                 </form>
                             </td>
+                            <td>{{ $committee->name }}</td>
+                            <td>{{ $committee->id }}</td>
                         </tr>
 
                     

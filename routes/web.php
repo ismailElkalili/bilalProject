@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 
 Route::get('/committees/create', [CommitteeController::class, 'create'])
-    ->name('dashboard\committee\create');
+    ->name('dashboard/committee/create');
 
 Route::post('/dashborad/committees/store', [CommitteeController::class, 'store']);
 Route::get('/dashborad/committees/index', [CommitteeController::class, 'index']);
