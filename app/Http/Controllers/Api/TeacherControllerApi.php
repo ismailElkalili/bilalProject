@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use DB;
-use App\Http\Models\Teacher;
+use Illuminate\Support\Facades\DB;
 
-class TeacherController extends Controller
+class TeacherControllerApi extends Controller
 {
-    public function getData(){
-       $teachers = DB::table('teachers')->get();
-        return response()->json(['teacher'=>$teachers]);
-        
+    public function getData()
+    {
+        $teachers = DB::table('teachers')->get();
+        return response()->json(['teacher' => $teachers]);
+
     }
 }
