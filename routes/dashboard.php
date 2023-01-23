@@ -7,6 +7,13 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/home', function () {
+    return view('welcome');
+});
+Route::get('/dashboard', function () {
+    return view('dashboard_layout\dashboard_main');
+})->middleware('auth');
+
 Route::controller(CommitteeController::class)->middleware('auth')->group(function () {
     Route::get('/committees/create', 'create');
     Route::post('/committees/store', 'store');

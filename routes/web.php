@@ -14,13 +14,8 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
- */
-Route::get('/home', function () {
-    return view('welcome');
-});
-Route::get('/dashboard', function () {
-    return view('dashboard_layout\dashboard_main');
-});
+*/
+
 Route::post('/logout_system', [LoginController::class, 'logout']);
 
 Auth::routes();
@@ -30,3 +25,7 @@ Route::get("/data", [TeacherControllerApi::class, 'getData']);
 Route::get("/data", [TeacherControllerApi::class, 'getData']);
 
 require __DIR__ . '/dashboard.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
