@@ -2,8 +2,27 @@
 @section('forms')
     <div class="card">
         <div class="card-header">
+
+            {{--  Import Teachers File   --}}
+            <div class="container mt-5 text-center">
+                <form action="{{ route('importT') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group mb-4">
+                        <div class="custom-file text-left">
+                            <input type="file" name="file" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">اختر الملف</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">رفع ملف المحفظين</button>
+                     {{--  Export Teachers File  --}}
+                    <a class="btn btn-success" href="{{ route('export-teachers') }}">تصدير المحفظين</a>
+                </form>
+            </div>
+
+
             <h3 class="card-title float-right" style="font-size: 25px">المحفظين</h3>
             <a href="{{ URL('/teacher/create') }}" type="submit" class="btn btn-info float-left">إضافة محفظ جديد</a>
+            
         </div>
         <div class="card-body float-right">
             <table class="table table-bordered float-right" style="text-align: right">

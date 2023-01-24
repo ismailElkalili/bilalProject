@@ -23,6 +23,20 @@ class CommitteeController extends Controller
 
     }
 
+    public function show($committeeID){
+
+        $committee = DB::table('committees')->where('id', '=', $committeeID)->first();
+        $teachers = DB::table('teachers')->select(
+            'id',
+            'name',
+            'committees_id')->get();
+
+        return view('dashboard.committee.show')
+        ->with('committee',$committee)
+        ->with('teachers',$teachers);
+    }
+
+
     public function store(Request $request)
     {
         $request->validate([

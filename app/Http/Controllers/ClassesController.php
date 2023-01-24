@@ -18,6 +18,33 @@ class ClassesController extends Controller
 
     }
 
+    public function show($classesID)
+    {
+        $classes = DB::table('classes')->where('id', '=', $classesID)->first();
+        $teachers = DB::table('teachers')->select(
+            'id',
+            'name')->get();
+        $departments = DB::table('departments')->get();
+
+        $students = DB::table('students')
+            ->select(
+                'id',
+                'name',
+                'dapartment_id',
+                'phone_number',
+                'whatsapp_number',
+                'class_id',
+                'state'
+            )->get();
+
+        return view('dashboard.classes.show')
+            ->with('classes', $classes)
+            ->with('teachers', $teachers)
+            ->with('departments', $departments)
+            ->with('students', $students);
+
+    }
+
     public function create(Request $request)
     {
         $teachers = DB::table('teachers')->select(

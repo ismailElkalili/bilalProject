@@ -20,6 +20,7 @@ Route::controller(CommitteeController::class)->middleware('auth')->group(functio
     Route::get('/committees', 'index');
     Route::get('/committees/edit/{committeesID}', 'edit');
     Route::post('/committees/update/{committeesID}', 'update');
+    Route::get('/committees/{committeesID}', 'show');
 
 });
 
@@ -58,4 +59,5 @@ Route::controller(ClassesController::class)->middleware('auth')->group(function 
     Route::post('/classes/update/{classesID}', 'update');
     Route::post('/classes/store', 'store');
     Route::get('/classes', 'index');
+    Route::get('/classes/{classesID}', 'show');
 });

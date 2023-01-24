@@ -50,7 +50,7 @@
 
             <div class="col-sm-10">
                 <label for="description" class="col-sm-4 col-form-label">تاريخ الميلاد</label>
-                <input type="datetime-local" class="form-control" name="dob" id="description"
+                <input type="date" class="form-control" name="dob" id="description"
                     placeholder="تاريخ الميلاد">
             </div>
         </div>

@@ -10,6 +10,6 @@ class Teacher extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name' , 'date_of_birth' ,'phone','whatsapp','specialization','qualification'
+        'name' , 'date_of_birth' ,'phone_number','nation_id','whatsapp_number','specialization','qualification','committees_id'
     ];
 }

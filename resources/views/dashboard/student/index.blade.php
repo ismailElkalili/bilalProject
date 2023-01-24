@@ -4,6 +4,21 @@
         <div class="card-header">
             <h3 class="card-title float-right" style="font-size: 25px">الطلاب</h3>
             <a class="btn btn-info float-left" href="{{ URL('/student/create/') }}">اضافة</a>
+
+
+            <form action="{{ route('importS') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group mb-4">
+                    <div class="custom-file text-left">
+                        <input type="file" name="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                </div>
+                <button class="btn btn-primary">رفع ملف الطلاب</button>
+                 {{--  Export Students File  --}}
+                <a class="btn btn-success" href="{{ route('export-students') }}">تصدير الطلاب</a>
+            </form>
+
         </div>
         <div class="card-body float-right">
             <table class="table table-bordered float-right" style="text-align: right">

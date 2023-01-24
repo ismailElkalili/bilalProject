@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportTeacher;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\TeacherRequest;
+use App\Imports\ImportTeacher;
+use Maatwebsite\Excel\Excel as ExcelExcel;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TeacherController extends Controller
 {
@@ -100,6 +104,22 @@ class TeacherController extends Controller
         return redirect('/teacher');
 
     }
+
+
+    public function importView(Request $request){
+        return view('dashboard.teacher.index');
+    }
+    
+    public function importTeachers(Request $request){
+        Excel::import(new ImportTeacher, $request->file('file')->store('files'));
+        return redirect()->back();
+    }
+
+    public function exportTeachers(Request $request){
+        return Excel::download(new ExportTeacher, 'Teachers.xlsx');
+    }
+
+    
 // function destroy()
 // {
 // }
