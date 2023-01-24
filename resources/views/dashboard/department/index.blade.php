@@ -1,7 +1,7 @@
 @extends('dashboard_layout.dashboard_main')
 @section('forms')
     <div class="card ">
-        <div class="card-header">
+        <div class="card-header" style="margin-top: 15px">
             <h3 class="card-title float-right" style="font-size: 25px">الأقسام</h3>
             <a class="btn btn-info float-left" href="{{ URL('/departments/create') }}">اضافة قسم جديد</a>
         </div>
@@ -19,19 +19,22 @@
                     @foreach ($departments as $departmane)
                         <tr>
                             <td>
-                                <a class="btn btn-primary"
-                                    href="{{ URL('/departments/edit/' . $departmane->id) }}">تعديل</a>
-
-                            </td>
-                            <td>
-                                <a class="btn btn-info" href="{{ URL('/departments/' . $departmane->id) }}">عرض</a>
-                            </td>
-                            <td>
                                 <form method="POST" action="{{ URL('/departments/destroy' . $departmane->id) }}">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                                    <button type="sumbit" class="btn btn-danger">حذف</button>
+                                    <button class=" btn btn-block btn-outline-danger btn-sm" type="sumbit" class="btn btn-danger">حذف</button>
                                 </form>
+                            </td>
+                           
+                            <td>
+                                <a class=" btn btn-block btn-outline-info btn-sm"
+                                    href="{{ URL('/departments/' . $departmane->id) }}">عرض</a>
+                            </td>
+                            <td>
+                                <a href="{{ URL('/departments/edit/' . $departmane->id) }}"
+                                    class=" btn btn-block btn-outline-primary btn-sm"><i
+                                        class=" nav-icon fas fa-edit"></i></a>
+
                             </td>
                             @foreach ($teachers as $teacher)
                                 @if ($teacher->id == $departmane->master_id)

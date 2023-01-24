@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href=" https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="{{ asset('dashboard-assets/css/adminlte.min.css') }}">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- daterange picker -->
@@ -25,7 +26,8 @@
     <!-- Bootstrap Color Picker -->
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
@@ -37,7 +39,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/dropzone/min/dropzone.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-  <style type="text/css" id="operaUserStyle"></style>
+    <style type="text/css" id="operaUserStyle"></style>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -61,40 +63,41 @@
                 </li>
             </ul>
             <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto flaot-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+            <ul class="navbar-nav ms-auto flaot-right">
+                <!-- Authentication Links -->
+                @guest
+                    @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                    @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-                            
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                    @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                {{ __('Logout') }}
+                            </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
+            </ul>
 
             <!-- Right navbar links -->
             {{-- <ul class="navbar-nav ml-auto">
@@ -228,8 +231,8 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4 ">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
-                <img src="{{ asset('dashboard-assets/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
+            <a href="#" class="brand-link">
+                <img src="{{ asset('dashboard-assets/img/logo.jpg') }}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">بلال</span>
             </a>
@@ -260,7 +263,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ URL('/teacher/create') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="nav-icon far fa-plus-square"></i>
                                         <p>إضافة محفظ</p>
                                     </a>
                                 </li>
@@ -284,7 +287,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ URL('/committees/create') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class=" nav-icon far fa-plus-square"></i>
                                         <p>إضافة لجان</p>
                                     </a>
                                 </li>
@@ -308,7 +311,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ URL('/student/create') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="nav-icon far fa-plus-square"></i>
                                         <p>إضافة طالب</p>
                                     </a>
                                 </li>
@@ -333,14 +336,14 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ URL('/departments/create') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="nav-icon far fa-plus-square"></i>
                                         <p>إضافة قسم</p>
                                     </a>
                                 </li>
 
                             </ul>
                         </li>
-                        
+
                         <li class="nav-item menu-close">
                             <a href="#" class="nav-link ">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -358,7 +361,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ URL('/classes/create') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="nav-icon far fa-plus-square"></i>
                                         <p>إضافة حلقة</p>
                                     </a>
                                 </li>
@@ -383,7 +386,7 @@
                         <!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-left">
-                                <li class="breadcrumb-item"><a href="{{ URL('/') }}">الرئيسية</a></li>
+                                <li class="breadcrumb-item"><a href="{{ url('/home') }}">الرئيسية</a></li>
                                 {{-- <li class="breadcrumb-item active">Starter Page</li> --}}
                             </ol>
                         </div><!-- /.col -->
@@ -440,7 +443,7 @@
             <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
             <!-- AdminLTE App -->
             <script src="{{ asset('dashboard-assets/js/adminlte.min.js') }}"></script>
-
+            <script src="{{ asset('dashboard-assets/js/up_file.js') }}"></script>
             <script src="{{ asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
             <script>
                 $("input[data-bootstrap-switch]").each(function() {
@@ -448,6 +451,7 @@
                 })
             </script>
 
-           </body>
+</body>
+
 
 </html>

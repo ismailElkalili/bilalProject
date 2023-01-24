@@ -41,18 +41,22 @@ class TeacherController extends Controller
             'qualification',
             'committees_id'
         )->where('id', $id)->first();
+        $class = DB::table('classes')->select()->where('teacher_id', $id)->get();
         foreach ($comm as $com) {
             if ($com->id == $teacher->committees_id) {
                 $commname = $com->name;
             }
         }
         // dd($teachers);
-        return view('dashboard.teacher.show')->with('teacher', $teacher)->with('commname', $commname);
+        return view('dashboard.teacher.show')
+            ->with('teacher', $teacher)
+            ->with('commname', $commname)
+            ->with('classes', $class);
 
     }
     function create()
     {
-        $committees = DB::table('committees')->select()->get('id', 'name');
+        $committees = DB::table('committees')->select('id', 'name')->get();
         return view('dashboard.teacher.create')->with('committees', $committees);
     }
 
@@ -77,7 +81,7 @@ class TeacherController extends Controller
     function edit($id)
     {
         $teacher = DB::table('teachers')->where('id', $id)->first();
-        $committees = DB::table('committees')->select()->get('id', 'name');
+        $committees = DB::table('committees')->select('id', 'name')->get();
         // dd($teacher);
         return view('dashboard.teacher.edit')
             ->with("teacher", $teacher)
@@ -106,20 +110,23 @@ class TeacherController extends Controller
     }
 
 
-    public function importView(Request $request){
+    public function importView(Request $request)
+    {
         return view('dashboard.teacher.index');
     }
-    
-    public function importTeachers(Request $request){
+
+    public function importTeachers(Request $request)
+    {
         Excel::import(new ImportTeacher, $request->file('file')->store('files'));
         return redirect()->back();
     }
 
-    public function exportTeachers(Request $request){
+    public function exportTeachers(Request $request)
+    {
         return Excel::download(new ExportTeacher, 'Teachers.xlsx');
     }
 
-    
+
 // function destroy()
 // {
 // }
