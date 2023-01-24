@@ -22,18 +22,18 @@ return new class extends Migration
             $table->id();
             //All in the above is same
             $table->string('name');
-            $table->boolean('state');
-
-            $table->unsignedBigInteger('dapartment_id')->nullable();
-            $table->unsignedBigInteger('class_id')->nullable();
             $table->bigInteger('nation_id');
             $table->date('date_of_birth');
             $table->bigInteger('phone_number');
-            $table->string('address')->nullable();
             $table->bigInteger('whatsapp_number');
             $table->string('father_job')->nullable();
+            $table->string('address')->nullable();
             $table->string('nationality')->nullable();
 
+            $table->unsignedBigInteger('dapartment_id')->nullable();
+            $table->unsignedBigInteger('class_id')->nullable();
+            $table->boolean('state')->default(0)->nullable();
+            $table->integer('isDeleted')->default(0)->nullable();
             //'created_at' TIMESTIPM NULL
             //'updated_at' TIMESTIPM NULL
             $table->timestamps();

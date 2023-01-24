@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string("description",1000);
             $table->bigInteger('matser_id')->nullable();
             $table->timestamps();
+            $table->integer('isDeleted')->default(0)->nullable();
 
         });
     }

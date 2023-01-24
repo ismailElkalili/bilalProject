@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('master_id')->nullable();
+            $table->integer('isDeleted')->default(0)->nullable();
             $table->timestamps();
 
             //Add Foreign Key

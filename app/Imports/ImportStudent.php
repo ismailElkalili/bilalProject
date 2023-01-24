@@ -16,16 +16,13 @@ class ImportStudent implements ToModel
     {
         return new Student([
             'name' => $row[0],
-            'state' => $row[1],
-            'dapartment_id' => $row[2],
-            'class_id' => $row[3],
-            'nation_id' => $row[4],
-            'date_of_birth' => $row[5],
-            'phone_number' => $row[6],
-            'address' => $row[7],
-            'whatsapp_number' => $row[8],
-            'father_job' => $row[9],
-            'nationality' => $row[10],
+            'nation_id' => $row[1],
+            'date_of_birth' => $row[2],
+            'phone_number' => $row[3],
+            'whatsapp_number' => $row[4],
+            'father_job' => $row[5],
+            'address' => $row[6],
+            'nationality' => $row[7],
         ]);
 
     }
