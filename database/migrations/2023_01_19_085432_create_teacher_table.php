@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('specialization')->nullable();
             $table->string('qualification')->nullable();
             $table->unsignedBigInteger('committees_id')->nullable();
+            $table->integer('isDeleted')->default(0)->nullable();
             $table->timestamps();
             //Add Foreign Key
             $table->foreign('committees_id')->references('id')->on('committees')->nullOnDelete();

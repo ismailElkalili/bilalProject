@@ -16,10 +16,11 @@
                             <label id="file_name" class="custom-file-label" for="customFile">اختار ملف</label>
                         </div>
                     </div>
+                    <button class="btn btn-primary " style="align-items: center;">رفع ملف الطلاب</button>
                 </form>
             </div>
             <div>
-                <button class="btn btn-primary " style="align-items: center;">رفع ملف الطلاب</button>
+              
                 {{--  Export Students File  --}}
                 <a class="btn btn-success"
                     style="margin-left: 15px;align-items: center"href="{{ route('export-students') }}">تصدير

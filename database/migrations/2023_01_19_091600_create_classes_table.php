@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('teacher_id')->nullable();
             $table->unsignedBigInteger('department_id')->nullable();
+            $table->integer('isDeleted')->default(0)->nullable();
+            
             $table->timestamps();
 
             $table->foreign('teacher_id')->references('id')->on('teachers')->nullOnDelete();

@@ -26,7 +26,6 @@ class StudentSeeder extends Seeder
             'nationality' => 'Gazaz',
             'dapartment_id' => '1',
             'class_id' => '1',
-            'state' => '0'
         ]);
     }
 }

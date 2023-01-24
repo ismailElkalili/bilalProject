@@ -101,6 +101,24 @@
         </div>
       </div>
       
+      <div class="col-sm-10">
+        <!-- select -->
+        <div class="form-group">
+          <label>القسم</label>
+          <select class="form-control" name="state" id="state">
+            @if ($student-> state == 0)
+            <option selected value="0">منتظم</option>
+            <option value="1">منقطع</option>
+            @else
+            <option selected value="1">منقطع</option>
+            <option value="0">منتظم</option>
+            @endif
+          </select>
+        </div>
+      </div>
+
+
+
     <div class="form-group row" style="margin-top: 35px;position: static;  display: inline;">
       <div class="col-sm-10">
         <button type="submit" class="btn btn-primary">Add</button>
