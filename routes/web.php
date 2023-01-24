@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\TeacherControllerApi;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
@@ -46,3 +47,6 @@ Route::get('/export-teachers',[TeacherController::class,'exportTeachers'])->name
 Route::get('/file-import',[StudentController::class,'importView'])->name('import-view');
 Route::post('/importS',[StudentController::class,'importStudents'])->name('importS');
 Route::get('/export-students',[StudentController::class,'exportStudents'])->name('export-students');
+
+Route::get('/export-classes',[ClassesController::class,'exportClasses'])->name('export-classes');
+Route::get('/export-class/{classesID}',[ClassesController::class,'exportClass']);

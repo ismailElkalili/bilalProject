@@ -12,6 +12,6 @@ class ExportTeacher implements FromCollection
     */
     public function collection()
     {
-        return Teacher::all();
+        return Teacher::select('name','date_of_birth','phone_number','whatsapp_number','nation_id','specialization','qualification')->get();
     }
 }

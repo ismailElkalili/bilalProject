@@ -4,6 +4,8 @@
         <div class="card-header">
             <h3 class="card-title float-right" style="font-size: 25px">الحلقات</h3>
             <a class="btn btn-info float-left" href="{{ URL('/classes/create') }}"> اضافة حلقة جديدة</a>
+             {{--  Export Classes File  --}}
+             <a class="btn btn-success" href="{{ route('export-classes') }}">تصدير الحلقات</a>
         </div>
         <div class="card-body float-right">
             <table class="table table-bordered float-right" style="text-align: right">

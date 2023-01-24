@@ -12,6 +12,6 @@ class ExportStudent implements FromCollection
     */
     public function collection()
     {
-        return Student::all();
+        return Student::select('name','nation_id','date_of_birth','phone_number','whatsapp_number','address','father_job','nationality')->get();
     }
 }

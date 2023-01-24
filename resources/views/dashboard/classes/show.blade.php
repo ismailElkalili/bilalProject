@@ -1,14 +1,22 @@
 @extends('dashboard_layout.dashboard_main')
 @section('forms')
+
+ {{--  Export Classes File  --}}
+ <a class="btn btn-info" href="{{ URL('/export-class/' . $classes->id) }}">تصدير الحلقة</a>
+
     <form action="{{ URL('/classes/' . $classes->id) }}" method="POST" style="margin-top: 40px">
         @csrf
         <div class="form-group row" style="position: static; display: inline;">
             <label for="classesName" class="col-sm-4 col-form-label">اسم الحلقة</label>
+          
+            
             <div class="col-sm-10">
                 <input disabled type="text" class="form-control" value="{{ $classes->name }}" name="classesName" id="classesName"
                     placeholder="اسم الحلقة">
             </div>
         </div>
+
+
         <div class="col-sm-10">
             <!-- select -->
             <div class="form-group">
@@ -58,7 +66,7 @@
             </thead>
             <tbody >
                 @foreach ($students as $student)
-                @if($student-> class_id == $classes->id)
+                @if($student-> class_id == $classes->id && $student-> state == 0)
                     <tr>
                         <td>
                             <a class="btn btn-primary" href="{{ URL('/student/edit/' . $student->id) }}">تعديل</a>

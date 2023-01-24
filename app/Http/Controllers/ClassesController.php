@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportClass;
+use App\Exports\ExportClasses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Excel as ExcelExcel;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ClassesController extends Controller
 {
@@ -99,5 +103,14 @@ class ClassesController extends Controller
     public function destroy($classesID)
     {
 
+    }
+
+
+    public function exportClasses(Request $request ){
+        return Excel::download(new ExportClasses(), 'Classes.xlsx');
+    }
+
+    public function exportClass(Request $request ){
+        return Excel::download(new ExportClass($request), 'Class.xlsx');
     }
 }
