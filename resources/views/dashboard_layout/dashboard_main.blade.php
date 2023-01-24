@@ -56,7 +56,7 @@
                             class="fas fa-bars"></a></i>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
+                    <a <a href="{{ url('/home') }} class="nav-link">الرئيسية</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -380,18 +380,12 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <div class="content-header">
+            <div class="content-header" style="text-align: right">
                 <div class="container-fluid">
-                    <div class="row mb-2">
+                    <div class="row ">
                         <!-- /.col -->
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-left">
-                                <li class="breadcrumb-item"><a href="{{ url('/home') }}">الرئيسية</a></li>
-                                {{-- <li class="breadcrumb-item active">Starter Page</li> --}}
-                            </ol>
-                        </div><!-- /.col -->
-                        <div class="col-sm-6 ">
-                            <h1 class="m-0 float-sm-right">مركز بلال بن رباح </h1>
+                        <div class="col-md-12 ">
+                            <h1 class="m-0 f">مركز بلال بن رباح </h1>
                         </div>
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -402,22 +396,11 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row" style="position: static;  display: inline;">
-
                         @yield('forms')
-
                         <!-- /.row -->
                     </div><!-- /.container-fluid -->
                 </div>
-                <section class="content">
-                    <div class="container-fluid">
-                        <div class="row"style="position: static;  display: inline;">
-                            <div class="col-md-12">
-                                @yield('tabels')
-                            </div>
-                            <!-- /.row -->
-                        </div><!-- /.container-fluid -->
-                </section>
-                <!-- /.content -->
+
             </div>
             <!-- /.content-wrapper -->
 

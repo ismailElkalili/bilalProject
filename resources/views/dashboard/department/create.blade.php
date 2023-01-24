@@ -13,16 +13,17 @@
             <label for="bossID" class="col-sm-4 col-form-label">المسؤول</label>
             <select class=" form-control custom-select form-control-border" style="text-align: right;padding-left:10px"
                 name="bossID" id="bossID">
-                <option value="-1">اختر مسؤول اللجنة</option>
+                <option value="-1">اختر مسؤول القسم</option>
                 @foreach ($teachers as $teacher)
                     <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
                 @endforeach
             </select>
         </div>
-    </form>
-    <div class="form-group row" style="margin-top: 35px;position: static;  display: inline;">
-        <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">إضافة</button>
+        <div class="form-group  float-left" style="margin-top: 35px;  display: inline;">
+                <a href="{{ URL('/departments/index') }}" class="btn btn-outline-danger" style="margin-right: 15px">إلغاء الأمر</a>
+                <button type="submit" class="btn btn-primary">إضافة</button>
+            
         </div>
-    </div>
+    </form>
+   
 @endsection
