@@ -68,13 +68,12 @@
                 placeholder="التخصص">
 
         </div>
-
-
+        <div class="form-group float-left" style="text-align:left">
+            <a href="{{ URL('/teacher') }}" class="btn btn-outline-danger" style="margin-right: 15px">إلغاء الأمر</a>
+            <button type="submit" class="btn btn-primary">اضافة</button>
+           
+        </div>
     </form>
-    <div class="form-group " style="text-align:left">
-        <a href="{{ URL('/teacher') }}" class="btn btn-outline-danger" style="margin-right: 15px">إلغاء الأمر</a>
-        <button type="submit" class="btn btn-primary">اضافة</button>
-       
-    </div>
+    
 
 @endsection
