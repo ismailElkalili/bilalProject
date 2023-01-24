@@ -80,12 +80,13 @@
                 @endforeach
             </select>
         </div>
-    </form>
-    <div class="form-group row" style="margin-top: 35px;position: static;  display: inline;">
-        <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">إضافة</button>
+        <div class="form-group float-left " style="margin-top: 35px;  display: inline;">
+            <a href="{{ URL('/student') }}" class="btn btn-outline-danger" style="margin-right: 15px">إلغاء الأمر</a>
+                <button type="submit" class="btn btn-primary">إضافة</button>
+            </div>
         </div>
-    </div>
+    </form>
+   
 @endsection
 
 
