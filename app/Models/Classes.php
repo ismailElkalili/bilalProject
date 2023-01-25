@@ -14,4 +14,10 @@ class Classes extends Model
         'teacher_id',
         'department_id',
     ];
+
+
+    public function teachers()
+    {
+        return $this->belongsTo(Teacher::class);
+    }
 }

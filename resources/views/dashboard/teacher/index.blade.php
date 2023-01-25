@@ -66,8 +66,6 @@
                                         class=" nav-icon fas fa-edit"></i></a>
 
                             </td>
-
-
                             <td>{{ $teacher->nation_id }}</td>
                             <td>{{ $teacher->date_of_birth }}</td>
                             <td>{{ $teacher->whatsapp_number }}</td>
@@ -80,4 +78,5 @@
             </table>
         </div>
     </div>
+    {{ $teachers->links() }}
 @endsection

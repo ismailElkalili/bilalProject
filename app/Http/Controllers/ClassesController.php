@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\ExportClass;
 use App\Exports\ExportClasses;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Excel as ExcelExcel;
@@ -51,11 +52,13 @@ class ClassesController extends Controller
 
     public function create(Request $request)
     {
-        $teachers = DB::table('teachers')->select(
-            'id',
-            'name')->get();
+        $classes = DB::table('classes')->get();
+        $teachers = Teacher::with('Classes')->get();
             $departments = DB::table('departments')->get();
-        return view('dashboard.classes.create')->with('teachers', $teachers)->with('departments', $departments);
+        return view('dashboard.classes.create')
+        ->with('teachers', $teachers)
+        ->with('departments', $departments)
+        ->with('classes', $classes);
 
     }
 

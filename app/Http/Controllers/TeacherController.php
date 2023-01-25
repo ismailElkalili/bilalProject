@@ -21,7 +21,7 @@ class TeacherController extends Controller
             'phone_number',
             'whatsapp_number',
             'nation_id'
-        )->get();
+        )->paginate(2);
         // dd($teachers);
         return view('dashboard.teacher.index')->with('teachers', $teachers);
 

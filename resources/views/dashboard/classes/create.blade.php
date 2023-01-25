@@ -1,5 +1,6 @@
 @extends('dashboard_layout.dashboard_main')
 @section('forms')
+{{--  @dump($teachers)  --}}
     <form action="{{ URL('/classes/store') }}" method="POST" style="margin-top: 40px;text-align: right;">
         @csrf
         <div class="form-group row" style="position: static; display: inline;">
@@ -9,10 +10,13 @@
         </div>
         <!-- select -->
         <div class="form-group">
-            <label>المسؤول</label>
+            <label>المسؤول 
+            </label>
             <select style="text-align: right" class="form-control custom-select" name="teacherID" id="teacherID">
                 @foreach ($teachers as $teacher)
-                    <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                        @if ($teacher['Classes'] == null)
+                            <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                        @endif
                 @endforeach
             </select>
         </div>
