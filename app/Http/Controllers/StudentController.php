@@ -53,7 +53,8 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $time = strtotime($request['dob']);
-        $newformat = date('Y-m-d', $time);
+        $newformat =  date("YYYY-MM-DD", strtotime($time));  
+     
         DB::table('students')->insert([
             'name' => $request['studentName'],
             'phone_number' => $request['phonenumber'],
@@ -90,9 +91,6 @@ class StudentController extends Controller
 
     public function update(Request $request, $studentID)
     {
-        $time = strtotime($request['dob']);
-        $newformat = date('Y-m-d', $time);
-
         DB::table('students')->where('id', $studentID)->update([
             'name' => $request['studentName'],
             'phone_number' => $request['phonenumber'],
@@ -104,7 +102,7 @@ class StudentController extends Controller
             'dapartment_id' => $request['departmentID'],
             'class_id' => $request['classesID'],
             'state' => $request['state'],
-            'date_of_birth' => $newformat,
+            'date_of_birth' => $request['dob'],
         ]);
         return redirect()->action([StudentController::class, 'index']);
     }
