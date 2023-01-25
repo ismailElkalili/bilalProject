@@ -12,9 +12,9 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $students = DB::table('students')->where('isDeleted',0)
+        $students = DB::table('students')->where('isDeleted', 0)->orderBy('id')
             ->select(
                 'id',
                 'name',
@@ -23,7 +23,7 @@ class StudentController extends Controller
                 'whatsapp_number',
                 'class_id',
                 'state'
-            )->get();
+            )->paginate(25);
 
         $departments = DB::table('departments')
             ->get();
@@ -126,9 +126,14 @@ class StudentController extends Controller
             ->with('classes', $classes);
     }
 
-    function destroy($id)
+    function archive($id)
     {
         DB::table('students')->where('id', $id)->update(['isDeleted' => 1]);
+        return redirect('/student');
+    }
+    function destroy($id)
+    {
+        DB::table('students')->where('id', $id)->delete();
         return redirect('/student');
     }
     function restore($id)

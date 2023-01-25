@@ -45,6 +45,7 @@ Route::controller(StudentController::class)->middleware('auth')->group(function 
     Route::get('/student/edit/{studentID}', 'edit');
     Route::post('/student/update/{studentID}', 'update');
     Route::get('/student/show/{studentID}', 'show');
+    Route::post('/student/archive/{id}', 'archive');
     Route::post('/student/destroy/{id}', 'destroy');
     Route::post('/student/restore/{id}', 'restore');
 });

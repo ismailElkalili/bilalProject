@@ -8,6 +8,7 @@
             <table class="table table-bordered float-right" style="text-align: right">
                 <thead>
 
+                    <th></th>
                     <th style="width: 15px"></th>
                     <th style="width: 15px"></th>
                     <th>الحالة</th>
@@ -23,17 +24,23 @@
                         <tr>
                             {{-- {{ dd($student) }} --}}
                             <td>
+                                <form method="POST" action="{{ URL('/student/destroy/' . $student->id) }}">
+                                    @csrf
+                                    <button type="sumbit" class="btn btn-danger">حذف نهائي</button>
+                                </form>
+                            </td>
+                            <td>
                                 <a class="btn btn-block btn-outline-info"
                                     href="{{ URL('/student/show/' . $student->id) }}">عرض</a>
 
                             </td>
                             <td>
                                 <form method="POST" action="{{ URL('/student/restore/' . $student->id) }}">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                                    <button type="sumbit" class="btn btn-outline-danger">استعادة</button>
+                                    @csrf
+                                    <button type="sumbit" class="btn btn-outline-primary">استعادة</button>
                                 </form>
                             </td>
+
                             @if ($student->state == 0)
                                 <td>منتظم</td>
                             @else

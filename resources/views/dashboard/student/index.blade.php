@@ -38,20 +38,21 @@
 
                     <th style="width: 15px"></th>
                     <th style="width: 15px"></th>
+                    <th style="width: 15px"></th>
                     <th>الحالة</th>
                     <th>الحلقة</th>
                     <th>القسم</th>
                     <th>رقم الواتساب</th>
                     <th>رقم الجوال </th>
-                    <th>اسم الطالب</th>
-                    <th style="width: 10px">الرقم</th>
+                    <th style="width: 80px">اسم الطالب</th>
+                    <th style="width: 12px">الرقم</th>
                 </thead>
                 <tbody>
                     @foreach ($students as $student)
                         <tr>
-                            
+
                             <td>
-                                <form method="POST" action="{{ URL('/student/destroy/' . $student->id) }}">
+                                <form method="POST" action="{{ URL('/student/archive/' . $student->id) }}">
                                     @csrf
                                     <button type="sumbit" class="btn btn-outline-danger">أرشفة</button>
                                 </form>
@@ -101,6 +102,8 @@
 
                 </tbody>
             </table>
+           
         </div>
     </div>
+    {{ $students->links() }}
 @endsection
