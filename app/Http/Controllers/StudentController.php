@@ -14,7 +14,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = DB::table('students')
+        $students = DB::table('students')->where('isDeleted',0)
             ->select(
                 'id',
                 'name',
@@ -41,10 +41,12 @@ class StudentController extends Controller
     {
         $departments = DB::table('departments')->select(
             'id',
-            'name')->get();
+            'name'
+        )->get();
         $classes = DB::table('classes')->select(
             'id',
-            'name')->get();
+            'name'
+        )->get();
 
         return view('dashboard.student.create')->with('departments', $departments)->with('classes', $classes);
 
@@ -52,9 +54,10 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
-        $time = strtotime($request['dob']);
-        $newformat =  date("YYYY-MM-DD", strtotime($time));  
-     
+        // $time = strtotime($request['dob']);
+        // // dd($time);
+        // $newformat = date("dd-mm-yyyy", $time);
+
         DB::table('students')->insert([
             'name' => $request['studentName'],
             'phone_number' => $request['phonenumber'],
@@ -66,7 +69,7 @@ class StudentController extends Controller
             'dapartment_id' => $request['departmentID'],
             'class_id' => $request['classesID'],
             'state' => '0',
-            'date_of_birth' => $newformat,
+            'date_of_birth' => $request['dob'],
 
         ]);
 
@@ -107,7 +110,8 @@ class StudentController extends Controller
         return redirect()->action([StudentController::class, 'index']);
     }
 
-    public function show($studentID){
+    public function show($studentID)
+    {
 
         $student = DB::table('students')->where('id', '=', $studentID)->first();
         $departments = DB::table('departments')
@@ -122,18 +126,29 @@ class StudentController extends Controller
             ->with('classes', $classes);
     }
 
-
-
-    public function importView(Request $request){
+    function destroy($id)
+    {
+        DB::table('students')->where('id', $id)->update(['isDeleted' => 1]);
+        return redirect('/student');
+    }
+    function restore($id)
+    {
+        DB::table('students')->where('id', $id)->update(['isDeleted' => 0]);
+        return redirect('/student');
+    }
+    public function importView(Request $request)
+    {
         return view('dashboard.student.index');
     }
-    
-    public function importStudents(Request $request){
+
+    public function importStudents(Request $request)
+    {
         Excel::import(new ImportStudent, $request->file('file')->store('files'));
         return redirect()->back();
     }
 
-    public function exportStudents(Request $request){
+    public function exportStudents(Request $request)
+    {
         return Excel::download(new ExportStudent, 'Students.xlsx');
     }
 

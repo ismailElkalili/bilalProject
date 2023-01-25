@@ -14,7 +14,7 @@ class TeacherController extends Controller
 {
     function index()
     {
-        $teachers = DB::table('teachers')->select(
+        $teachers = DB::table('teachers')->where('isDeleted', 0)->select(
             'id',
             'name',
             'date_of_birth',
@@ -63,7 +63,11 @@ class TeacherController extends Controller
     function store(TeacherRequest $request)
     {
         $time = strtotime($request['dob']);
-
+        if ($request['committee'] == -1) {
+            $com_id = null;
+        } else {
+            $com_id = $request['committee'];
+        }
         $newformat = date('Y-m-d', $time);
         DB::table('teachers')->insert([
             'name' => $request['teacherName'],
@@ -73,7 +77,7 @@ class TeacherController extends Controller
             'date_of_birth' => $newformat,
             'specialization' => $request['specialization'],
             'qualification' => $request['qualification'],
-            'committees_id' => $request['committee'],
+            'committees_id' => $com_id,
         ]);
         return redirect('/teacher');
 
@@ -127,11 +131,15 @@ class TeacherController extends Controller
     }
 
 
-// function destroy()
-// {
-// }
-// function restore()
-// {
-// }
+    function destroy($id)
+    {
+        DB::table('teachers')->where('id', $id)->update(['isDeleted' => 1]);
+        return redirect('/teacher');
+    }
+    function restore($id)
+    {
+        DB::table('teachers')->where('id', $id)->update(['isDeleted' => 0]);
+        return redirect('/teacher');
+    }
 
 }

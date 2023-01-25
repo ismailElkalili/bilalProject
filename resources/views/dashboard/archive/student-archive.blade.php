@@ -3,34 +3,6 @@
     <div class="card ">
         <div class="card-header" style="margin-top: 15px">
             <h3 class="card-title float-right" style="font-size: 25px">الطلاب</h3>
-            <a class="btn btn-info float-left" style="color: white" href="{{ URL('/student/create/') }}">اضافة طالب</a>
-        </div>
-        <div class="container  text-center">
-
-            <form action="{{ route('importS') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="row" style="margin-top: 10px">
-                    <div class="form-group mb-4">
-                        <div class="custom-file text-left">
-                            <input style="text-align: right;" onchange="getUploadName()" type="file" name="file"
-                                class="custom-file-input float-right" id="customFile">
-                            <label id="file_name" class="custom-file-label" for="customFile">اختار ملف</label>
-                        </div>
-                    </div>
-                </div>
-                <div class=" text-center">
-                    <a class="col-md-3 btn btn-success"
-                        style="margin-left: 15px;margin-right: 20px;align-items: center"href="{{ route('export-students') }}">تصدير
-                        الطلاب</a>
-                    <button class=" col-md-3 btn btn-primary " style="align-items: center;">رفع ملف الطلاب</button>
-                </div>
-            </form>
-
-            <div>
-
-                {{--  Export Students File  --}}
-
-            </div>
         </div>
         <div class="card-body float-right">
             <table class="table table-bordered float-right" style="text-align: right">
@@ -38,7 +10,6 @@
 
                     <th style="width: 15px"></th>
                     <th style="width: 15px"></th>
-                    <th></th>
                     <th>الحالة</th>
                     <th>الحلقة</th>
                     <th>القسم</th>
@@ -52,23 +23,17 @@
                         <tr>
                             {{-- {{ dd($student) }} --}}
                             <td>
-                                <form method="POST" action="{{ URL('/student/destroy/' . $student->id) }}">
-                                    @csrf
-                                    <button type="sumbit" class="btn btn-outline-danger">أرشفة</button>
+                                <a class="btn btn-block btn-outline-info"
+                                    href="{{ URL('/student/show/' . $student->id) }}">عرض</a>
+
+                            </td>
+                            <td>
+                                <form method="POST" action="{{ URL('/student/restore/' . $student->id) }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                                    <button type="sumbit" class="btn btn-outline-danger">استعادة</button>
                                 </form>
                             </td>
-                            <td>
-                                <a class="btn btn-block btn-outline-info"
-                                    href="{{ URL('/student/' . $student->id) }}">عرض</a>
-
-                            </td>
-                            <td>
-                                <a href="{{ URL('/student/edit/' . $student->id) }}"
-                                    class=" btn btn-block btn-outline-primary btn-sm"><i
-                                        class=" nav-icon fas fa-edit"></i></a>
-
-                            </td>
-
                             @if ($student->state == 0)
                                 <td>منتظم</td>
                             @else

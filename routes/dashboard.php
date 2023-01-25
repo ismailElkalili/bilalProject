@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\CommitteeController;
 use App\Http\Controllers\DepartmentController;
@@ -30,7 +31,8 @@ Route::controller(TeacherController::class)->middleware('auth')->group(function 
     Route::post('/teacher/store', 'store');
     Route::post('/teacher/update', 'update');
     Route::get('/teacher/edit/{id}', 'edit');
-    // Route::post('/teacher/destroy/{id}', 'destroy');
+    Route::post('/teacher/destroy/{id}', 'destroy');
+    Route::post('/teacher/restore/{id}', 'restore');
     Route::get('/teacher/show/{id}', 'show');
 
 });
@@ -41,7 +43,9 @@ Route::controller(StudentController::class)->middleware('auth')->group(function 
     Route::post('/student/store', 'store');
     Route::get('/student/edit/{studentID}', 'edit');
     Route::post('/student/update/{studentID}', 'update');
-    Route::get('/student/{studentID}', 'show');
+    Route::get('/student/show/{studentID}', 'show');
+    Route::post('/student/destroy/{id}', 'destroy');
+    Route::post('/student/restore/{id}', 'restore');
 });
 
 Route::controller(DepartmentController::class)->middleware('auth')->group(function () {
@@ -60,4 +64,8 @@ Route::controller(ClassesController::class)->middleware('auth')->group(function 
     Route::post('/classes/store', 'store');
     Route::get('/classes', 'index');
     Route::get('/classes/{classesID}', 'show');
+});
+Route::controller(ArchiveController::class)->middleware('auth')->group(function () {
+    Route::get('/archive/teacher', 'index_teacher');
+    Route::get('/archive/student', 'index_student');
 });
