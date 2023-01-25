@@ -38,7 +38,6 @@
 
                     <th style="width: 15px"></th>
                     <th style="width: 15px"></th>
-                    <th></th>
                     <th>الحالة</th>
                     <th>الحلقة</th>
                     <th>القسم</th>
@@ -50,7 +49,7 @@
                 <tbody>
                     @foreach ($students as $student)
                         <tr>
-                            {{-- {{ dd($student) }} --}}
+                            
                             <td>
                                 <form method="POST" action="{{ URL('/student/destroy/' . $student->id) }}">
                                     @csrf
@@ -59,7 +58,7 @@
                             </td>
                             <td>
                                 <a class="btn btn-block btn-outline-info"
-                                    href="{{ URL('/student/' . $student->id) }}">عرض</a>
+                                    href="{{ URL('/student/show/' . $student->id) }}">عرض</a>
 
                             </td>
                             <td>

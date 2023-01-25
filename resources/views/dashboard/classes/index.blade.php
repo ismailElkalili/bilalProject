@@ -22,15 +22,14 @@
                     @foreach ($classes as $class)
                         <tr>
                             <td>
-                                <form method="POST" action="{{ URL('/classes/destroy' . $class->id) }}">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+                                <form method="POST" action="{{ URL('/classes/destroy/' . $class->id) }}">
+                                   @csrf
                                     <button type="sumbit" class="btn btn-outline-danger">حذف</button>
                                 </form>
                             </td>
 
                             <td>
-                                <a class="btn btn-outline-info" href="{{ URL('/classes/' . $class->id) }}">عرض</a>
+                                <a class="btn btn-outline-info" href="{{ URL('/classes/show/' . $class->id) }}">عرض</a>
 
                             </td>
                             <td>

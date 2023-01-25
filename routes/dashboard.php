@@ -8,7 +8,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/dashboard', function () {
@@ -21,7 +21,8 @@ Route::controller(CommitteeController::class)->middleware('auth')->group(functio
     Route::get('/committees', 'index');
     Route::get('/committees/edit/{committeesID}', 'edit');
     Route::post('/committees/update/{committeesID}', 'update');
-    Route::get('/committees/{committeesID}', 'show');
+    Route::get('/committees/show/{committeesID}', 'show');
+    Route::post('/committees/destroy/{id}', 'destroy');
 
 });
 
@@ -54,6 +55,7 @@ Route::controller(DepartmentController::class)->middleware('auth')->group(functi
     Route::get('/departments/index', 'index');
     Route::get('/departments/edit/{departmentID}', 'edit');
     Route::post('/departments/update/{departmentID}', 'update');
+    Route::post('/departments/destroy/{id}', 'destroy');
     Route::get('/departments', 'index');
 });
 Route::controller(ClassesController::class)->middleware('auth')->group(function () {
@@ -61,9 +63,10 @@ Route::controller(ClassesController::class)->middleware('auth')->group(function 
     Route::get('/classes/index', 'index');
     Route::get('/classes/edit/{classesID}', 'edit');
     Route::post('/classes/update/{classesID}', 'update');
+    Route::post('/classes/destroy/{id}', 'destroy');
     Route::post('/classes/store', 'store');
     Route::get('/classes', 'index');
-    Route::get('/classes/{classesID}', 'show');
+    Route::get('/classes/show/{classesID}', 'show');
 });
 Route::controller(ArchiveController::class)->middleware('auth')->group(function () {
     Route::get('/archive/teacher', 'index_teacher');

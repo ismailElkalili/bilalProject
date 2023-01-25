@@ -19,13 +19,13 @@
                     @foreach ($departments as $departmane)
                         <tr>
                             <td>
-                                <form method="POST" action="{{ URL('/departments/destroy' . $departmane->id) }}">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                                    <button class=" btn btn-block btn-outline-danger btn-sm" type="sumbit" class="btn btn-danger">حذف</button>
+                                <form method="POST" action="{{ URL('/departments/destroy/' . $departmane->id) }}">
+                                    @csrf
+                                    <button class=" btn btn-block btn-outline-danger btn-sm" type="sumbit"
+                                        class="btn btn-danger">حذف</button>
                                 </form>
                             </td>
-                           
+
                             <td>
                                 <a class=" btn btn-block btn-outline-info btn-sm"
                                     href="{{ URL('/departments/' . $departmane->id) }}">عرض</a>

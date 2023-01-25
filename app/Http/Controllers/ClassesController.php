@@ -100,11 +100,6 @@ class ClassesController extends Controller
         return redirect()->action([ClassesController::class, 'index']);
     }
 
-    public function destroy($classesID)
-    {
-
-    }
-
 
     public function exportClasses(Request $request ){
         return Excel::download(new ExportClasses(), 'Classes.xlsx');
@@ -112,5 +107,10 @@ class ClassesController extends Controller
 
     public function exportClass(Request $request ){
         return Excel::download(new ExportClass($request), 'Class.xlsx');
+    }
+    public function destroy($id)
+    {
+        DB::table('classes')->where('id', $id)->delete();
+        return redirect()->back();
     }
 }

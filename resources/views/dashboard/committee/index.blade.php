@@ -18,7 +18,7 @@
                     @foreach ($committees as $committee)
                         <tr>
                             <td>
-                                <form method="POST" action="{{ URL('/committees/destroy' . $committee->id) }}">
+                                <form method="POST" action="{{ URL('/committees/destroy/' . $committee->id) }}">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                     <button type="sumbit" class="btn btn-block btn-outline-danger">حذف</button>
@@ -26,11 +26,12 @@
                             </td>
 
                             <td>
-                                <a class="btn btn-block btn-outline-info" href="{{ URL('/committees/' . $committee->id) }}">عرض</a>
+                                <a class="btn btn-block btn-outline-info"
+                                    href="{{ URL('/committees/show/' . $committee->id) }}">عرض</a>
 
                             </td>
                             <td>
-                                <a  href="{{ URL('/committees/edit/' . $committee->id) }}"
+                                <a href="{{ URL('/committees/edit/' . $committee->id) }}"
                                     class=" btn btn-block btn-outline-primary btn-sm"><i
                                         class=" nav-icon fas fa-edit"></i></a>
 
