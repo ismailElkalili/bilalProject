@@ -58,13 +58,17 @@
         <div class="form-group row" style="position: static; display: inline;">
             <label>القسم</label>
             <select disabled class="form-control custom-select" name="departmentID" id="departmentID">
-                @foreach ($departments as $department)
-                    @if ($department->id == $student->id)
-                        <option selected value="{{ $department->id }}">{{ $department->name }}</option>
-                    < @else{ <option value="{{ $department->id }}">{{ $department->name }}</option>
-                            }
-                    @endif
-                @endforeach
+                @if (is_null($student->dapartment_id))
+                    <option selected value="">لايوجد</option>
+                @else
+                    @foreach ($departments as $department)
+                        @if ($department->id == $student->dapartment_id)
+                            <option selected value="{{ $department->id }}">{{ $department->name }}</option>
+                        < @else{ <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                }
+                        @endif
+                    @endforeach
+                @endif
             </select>
         </div>
 
@@ -72,11 +76,11 @@
         <div class="form-group row" style="position: static; display: inline;">
             <label>الحلقة</label>
             <select disabled class="form-control custom-select" name="classesID" id="classesID">
-                @if (is_null($student->id))
+                @if (is_null($student->class_id))
                     <option selected value="">لايوجد</option>
                 @else
                     @foreach ($classes as $class)
-                        @if ($department->id == $student->id)
+                        @if ($department->id == $student->class_id)
                             <option selected value="{{ $class->id }}">{{ $class->name }}</option>
                         @else{
                             <option value="{{ $class->id }}">{{ $class->name }}</option>
