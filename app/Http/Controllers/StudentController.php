@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Exports\ExportStudent;
 use App\Imports\ImportStudent;
-use App\Imports\ImportTeacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Excel as ExcelExcel;
 use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
@@ -37,6 +35,30 @@ class StudentController extends Controller
             ->with('classes', $classes);
     }
 
+    public function search(Request $request)
+    {
+        $students = DB::table('students')->where('name', 'like', '%' . $request['studentName'] . '%')
+            ->select(
+                'id',
+                'name',
+                'dapartment_id',
+                'phone_number',
+                'whatsapp_number',
+                'class_id',
+                'state'
+            )->paginate(25);
+
+        $departments = DB::table('departments')
+            ->get();
+
+        $classes = DB::table('classes')
+            ->get();
+
+        return view('dashboard.student.index')
+            ->with('students', $students)
+            ->with('departments', $departments)
+            ->with('classes', $classes);
+    }
     public function create(Request $request)
     {
         $departments = DB::table('departments')->select(
@@ -126,17 +148,17 @@ class StudentController extends Controller
             ->with('classes', $classes);
     }
 
-    function archive($id)
+    public function archive($id)
     {
         DB::table('students')->where('id', $id)->update(['isDeleted' => 1]);
         return redirect('/student');
     }
-    function destroy($id)
+    public function destroy($id)
     {
         DB::table('students')->where('id', $id)->delete();
         return redirect('/student');
     }
-    function restore($id)
+    public function restore($id)
     {
         DB::table('students')->where('id', $id)->update(['isDeleted' => 0]);
         return redirect('/student');
@@ -156,6 +178,5 @@ class StudentController extends Controller
     {
         return Excel::download(new ExportStudent, 'Students.xlsx');
     }
-
 
 }

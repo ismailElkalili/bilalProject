@@ -1,5 +1,20 @@
 @extends('dashboard_layout.dashboard_main')
 @section('forms')
+    <div dir="rtl" class="row">
+
+        <div class="col-md-8 offset-md-2">
+            <form action="{{ URL('/departments/search') }}" method="GET">
+                <span style="position: absolute;margin:12px " align="center">
+                    <i class="fa fa-search"></i>
+                </span>
+                <input style="padding-right :50px" type="search" id="departmentName" name="departmentName"
+                    class="form-control form-control-lg" placeholder="أدخل اسم اللجنة">
+            </form>
+        </div>
+
+    </div>
+    </div>
+
     <div class="card ">
         <div class="card-header" style="margin-top: 15px">
             <h3 class="card-title float-right" style="font-size: 25px">الأقسام</h3>

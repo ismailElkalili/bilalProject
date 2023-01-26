@@ -21,11 +21,18 @@ class TeacherController extends Controller
             'phone_number',
             'whatsapp_number',
             'nation_id'
-        )->paginate(2);
+        )->paginate(25);
         // dd($teachers);
         return view('dashboard.teacher.index')->with('teachers', $teachers);
 
     }
+    public function search(Request $request){
+        $teachers = DB::table('teachers')->where('name', 'like', '%'.$request['teacherName'].'%')
+                ->paginate(25);
+        
+                return view('dashboard.teacher.index')->with('teachers', $teachers);
+    }
+
     function show($id)
     {
         $commname = '';

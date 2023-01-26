@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\ExportClass;
 use App\Exports\ExportClasses;
+use App\Models\Classes;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -50,6 +51,16 @@ class ClassesController extends Controller
 
     }
 
+    public function search(Request $request){
+        $classes = DB::table('classes')->where('name', 'like', '%'.$request['className'].'%')
+                ->get();
+        $teachers = DB::table('teachers')->select(
+            'id',
+            'name')->get();
+        $departments = DB::table('departments')->get();
+        return view('dashboard.classes.index')->with('classes', $classes)->with('teachers', $teachers)->with('departments', $departments);
+    }
+
     public function create(Request $request)
     {
         $classes = DB::table('classes')->get();
@@ -92,6 +103,7 @@ class ClassesController extends Controller
             ->with('departments', $departments);
 
     }
+
 
     public function update(Request $request, $classesID)
     {

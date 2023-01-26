@@ -18,6 +18,17 @@ class DepartmentController extends Controller
         return view('dashboard.department.index')->with('departments', $departments)->with('teachers', $teachers);
     }
 
+    public function search(Request $request){
+        $departments = DB::table('departments')->where('name', 'like', '%'.$request['departmentName'].'%')
+                ->get();
+                $teachers = DB::table('teachers')->select(
+                    'id',
+                    'name'
+                )->get();
+        
+                return view('dashboard.department.index')->with('departments', $departments)->with('teachers', $teachers);
+    }
+
     public function create(Request $request)
     {
         $departments = DB::table('departments')->get();

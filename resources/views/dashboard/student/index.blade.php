@@ -1,5 +1,22 @@
 @extends('dashboard_layout.dashboard_main')
 @section('forms')
+
+<div dir="rtl" class="row">
+
+    <div class="col-md-8 offset-md-2">
+        <form action="{{ URL('/student/search') }}" method="GET">
+            <span style="position: absolute;margin:12px " align="center">
+                <i class="fa fa-search"></i>
+            </span>
+            <input style="padding-right :50px" type="search" id="studentName" name="studentName"
+                class="form-control form-control-lg" placeholder="أدخل اسم الطالب">
+        </form>
+    </div>
+
+</div>
+
+</div>
+
     <div class="card ">
         <div class="card-header" style="margin-top: 15px">
             <h3 class="card-title float-right" style="font-size: 25px">الطلاب</h3>
@@ -19,6 +36,7 @@
                     </div>
                 </div>
                 <div class=" text-center">
+                     {{--  Export Students File  --}}
                     <a class="col-md-3 btn btn-success"
                         style="margin-left: 15px;margin-right: 20px;align-items: center"href="{{ route('export-students') }}">تصدير
                         الطلاب</a>
@@ -28,7 +46,7 @@
 
             <div>
 
-                {{--  Export Students File  --}}
+               
 
             </div>
         </div>

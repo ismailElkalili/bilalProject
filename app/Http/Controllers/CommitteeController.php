@@ -14,6 +14,13 @@ class CommitteeController extends Controller
         return view('dashboard.committee.index')->with('committees', $committees);
     }
 
+    public function search(Request $request){
+        $committees = DB::table('committees')->where('name', 'like', '%'.$request['committeeName'].'%')
+                ->get();
+        
+                return view('dashboard.committee.index')->with('committees', $committees);
+    }
+
     public function create(Request $request)
     {
         $teachers = DB::table('teachers')->select(
