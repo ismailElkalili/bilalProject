@@ -20,7 +20,8 @@
     <div class="card ">
         <div class="card-header" style="margin-top: 10px">
             <h3 class="card-title float-right" style="font-size: 25px">اللجان</h3>
-            <a class="btn btn-info float-left" href="{{ URL('/committees/create') }}">اضافة لجنه جديدة</a>
+            <a class="btn btn-info float-left" style="color: white"href="{{ URL('/committees/create') }}">اضافة لجنه
+                جديدة</a>
         </div>
         <div class="card-body float-right">
             <table class="table table-bordered float-right" style="text-align: right">

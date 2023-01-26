@@ -47,7 +47,7 @@
                             </td>
 
                             <td>
-                                <a class="btn btn-outline-info" href="{{ URL('/classes/show/' . $class->id) }}">عرض</a>
+                                <a class="btn btn-outline-info" href="{{ URL('/classes/' . $class->id) }}">عرض</a>
 
                             </td>
                             <td>
@@ -55,18 +55,24 @@
                                         class=" nav-icon fas fa-edit"></i></a>
 
                             </td>
-                            @foreach ($departments as $department)
-                                @if ($department->id == $class->department_id)
-                                    <td>{{ $department->name }}</td>
-                                @endif
-                            @endforeach
-
-                            @foreach ($teachers as $teacher)
-                                @if ($teacher->id == $class->teacher_id)
-                                    <td>{{ $teacher->name }}</td>
-                                @endif
-                            @endforeach
-
+                            @if (is_null($class->department_id))
+                                <td>لا يوجد</td>
+                            @else
+                                @foreach ($departments as $department)
+                                    @if ($department->id == $class->department_id)
+                                        <td>{{ $department->name }}</td>
+                                    @endif
+                                @endforeach
+                            @endif
+                            @if (is_null($class->teacher_id))
+                                <td>لا يوجد</td>
+                            @else
+                                @foreach ($teachers as $teacher)
+                                    @if ($teacher->id == $class->teacher_id)
+                                        <td>{{ $teacher->name }}</td>
+                                    @endif
+                                @endforeach
+                            @endif
                             <td>{{ $class->name }}</td>
                             <td>{{ $class->id }}</td>
                         </tr>

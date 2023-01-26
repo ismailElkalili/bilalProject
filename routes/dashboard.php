@@ -76,7 +76,7 @@ Route::controller(ClassesController::class)->middleware('auth')->group(function 
     Route::post('/classes/destroy/{id}', 'destroy');
     Route::post('/classes/store', 'store');
     Route::get('/classes', 'index');
-    Route::get('/classes/show/{classesID}', 'show'); 
+    Route::get('/classes/{classesID}', 'show'); 
     Route::get('/classes/search', 'search');
 
 });

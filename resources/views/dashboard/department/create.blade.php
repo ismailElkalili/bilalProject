@@ -1,6 +1,16 @@
 @extends('dashboard_layout.dashboard_main')
 @section('forms')
-    <form action="{{ URL('/departments/store') }}" method="POST" style="margin-top: 15px;text-align: right">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul style="text-align: right">
+
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <form class="row" action="{{ URL('/departments/store') }}" method="POST" style="margin-top: 15px;text-align: right">
         @csrf
         <div class="form-group row" style="position: static; display: inline;">
             <label for="departmentName" class="col-sm-4 col-form-label">اسم القسم</label>
@@ -19,11 +29,11 @@
                 @endforeach
             </select>
         </div>
-        <div class="form-group  float-left" style="margin-top: 35px;  display: inline;">
-                <a href="{{ URL('/departments/index') }}" class="btn btn-outline-danger" style="margin-right: 15px">إلغاء الأمر</a>
-                <button type="submit" class="btn btn-primary">إضافة</button>
-            
+        <div class="form-group  float-right" style="margin-top: 35px;  display: inline;">
+            <a href="{{ URL('/departments/index') }}" class="btn btn-outline-danger" style="margin-right: 15px">إلغاء
+                الأمر</a>
+            <button type="submit" class="btn btn-primary">إضافة</button>
+
         </div>
     </form>
-   
 @endsection

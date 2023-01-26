@@ -60,7 +60,7 @@ class TeacherRequest extends FormRequest
             'phoneNumber.numeric' => 'رقم الجوال يجب ان يكون رقم',
             'whatsappNumber.numeric' => 'رقم الواتس أب يجب أن يكون رقم',
             'specialization.string' => 'التخصص يجب أن يكون نص',
-            'specialization.min:13' => 'رقم الواتس أب مكون من 14 رقم '
+            'specialization.min' => 'رقم الواتس أب مكون من 14 رقم '
         ];
     }
 

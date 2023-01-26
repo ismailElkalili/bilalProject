@@ -43,7 +43,7 @@
             <!-- select -->
             <label>اللجان</label>
             <select style="text-align: right;" class="  custom-select form-control-border" name="committee" id="committee">
-                <option value="-1"></option>
+                <option value="">الرجاء اختيار لجنة</option>
                 @foreach ($committees as $commite)
                     <option value="{{ $commite->id }}">{{ $commite->name }}</option>
                 @endforeach
@@ -54,7 +54,7 @@
             <label>المؤهل العلمي</label>
             <select style="text-align: right;" class="  custom-select form-control-border" name="qualification"
                 id="qualification">
-                <option value="-1"></option>
+                <option value="">الرجاء اختيار مؤهل علمي</option>
                 <option value="بكالوريوس">بكالوريوس</option>
                 <option value="دبلوم">دبلوم</option>
                 <option value="توجيهي">توجيهي</option>
@@ -71,9 +71,9 @@
         <div class="form-group float-left" style="text-align:left">
             <a href="{{ URL('/teacher') }}" class="btn btn-outline-danger" style="margin-right: 15px">إلغاء الأمر</a>
             <button type="submit" class="btn btn-primary">اضافة</button>
-           
+
         </div>
     </form>
-    
+
 
 @endsection

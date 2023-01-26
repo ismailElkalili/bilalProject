@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\ExportClass;
 use App\Exports\ExportClasses;
+use App\Http\Requests\ClassesRequest;
 use App\Models\Classes;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -84,13 +85,9 @@ class ClassesController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(ClassesRequest $request)
     {
-        $request->validate([
-            'classesName' => 'required|max:50',
-            'teacherID',
-        ]);
-
+        
         DB::table('classes')->insert([
             'name' => $request['classesName'],
             'teacher_id' => $request['teacherID'],
@@ -117,7 +114,7 @@ class ClassesController extends Controller
     }
 
 
-    public function update(Request $request, $classesID)
+    public function update(ClassesRequest $request, $classesID)
     {
         DB::table('classes')->where('id', $classesID)->update([
             'name' => $request['classesName'],

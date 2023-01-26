@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DepartmentRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -25,15 +26,16 @@ class DepartmentController extends Controller
         return view('dashboard.department.index')->with('departments', $departments)->with('teachers', $teachers);
     }
 
-    public function search(Request $request){
-        $departments = DB::table('departments')->where('name', 'like', '%'.$request['departmentName'].'%')
-                ->get();
-                $teachers = DB::table('teachers')->select(
-                    'id',
-                    'name'
-                )->get();
-        
-                return view('dashboard.department.index')->with('departments', $departments)->with('teachers', $teachers);
+    public function search(Request $request)
+    {
+        $departments = DB::table('departments')->where('name', 'like', '%' . $request['departmentName'] . '%')
+            ->get();
+        $teachers = DB::table('teachers')->select(
+            'id',
+            'name'
+        )->get();
+
+        return view('dashboard.department.index')->with('departments', $departments)->with('teachers', $teachers);
     }
 
     public function create(Request $request)
@@ -47,13 +49,9 @@ class DepartmentController extends Controller
         return view('dashboard.department.create')->with('departments', $departments)->with('teachers', $teachers);
     }
 
-    public function store(Request $request)
+    public function store(DepartmentRequest $request)
     {
-        $request->validate([
-            'departmentName' => 'required|max:50',
-            'bossID'
-        ]);
-
+        
         DB::table('departments')->insert([
             'name' => $request['departmentName'],
             'master_id' => $request['bossID'],
@@ -76,7 +74,7 @@ class DepartmentController extends Controller
 
     }
 
-    public function update(Request $request, $departmentID)
+    public function update(DepartmentRequest $request, $departmentID)
     {
         DB::table('departments')->where('id', $departmentID)->update([
             'name' => $request['departmentName'],

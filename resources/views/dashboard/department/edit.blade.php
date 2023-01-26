@@ -1,30 +1,35 @@
 @extends('dashboard_layout.dashboard_main')
-@section("forms")
-<form action="{{URL('/departments/update/'.$departments->id)}}" method="POST" style="margin-top: 40px">
-    @csrf
-    <div class="form-group row" style="position: static; display: inline;">
-      <label for="departmentName" class="col-sm-4 col-form-label">اسم القسم</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="departmentName" value="{{$departments->name}}" id="departmentName" placeholder="اسم القسم">
-      </div>
-    </div>
-      <div class="col-sm-10">
+@section('forms')
+    <form action="{{ URL('/departments/update/' . $departments->id) }}" method="POST"
+        style="margin-top: 12px ;text-align: right">
+        @csrf
+        <div class="form-group" >
+            <label for="departmentName" class=" col-form-label">اسم القسم</label>
+
+            <input style="text-align: right"type="text" class="form-control" name="departmentName" value="{{ $departments->name }}"
+                id="departmentName" placeholder="اسم القسم">
+
+        </div>
+
         <!-- select -->
         <div class="form-group">
-          <label>المسؤول</label>
-          <select class="form-control" name="bossID" id="bossID">
-            @foreach ($teachers as $teacher)
-            <option value="{{$teacher -> id}}" >{{$teacher -> name}}</option>
-            @endforeach
-          </select>
+            <label  for="bossID" class=" col-form-label">المسؤول</label>
+            <select style="text-align: right" class="form-control" name="bossID" id="bossID">
+                @foreach ($teachers as $teacher)
+                    @if ($teacher->id == $departments->teacher_id)
+                        <option selected value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                    @else
+                        <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                    @endif
+                @endforeach
+            </select>
         </div>
-      </div>
 
-    <div class="form-group row" style="margin-top: 35px;position: static;  display: inline;">
-      <div class="col-sm-10">
-        <button type="submit" class="btn btn-primary">Add</button>
-      </div>
-    </div>
 
-  </form> 
+        <div class="form-group " style="margin-top: 35px;position: static;  display: inline;">
+            <a href="{{ url('/departments/index') }}" class="btn btn-outline-danger">الغاء الأمر</a>
+            <button type="submit" style="margin-left: 20px" class="btn btn-primary">تعديل</button>
+        </div>
+
+    </form>
 @endsection
