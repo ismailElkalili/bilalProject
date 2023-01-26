@@ -12,6 +12,13 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class TeacherController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:teacher-list|product-create|product-edit|product-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:teacher-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:teacher-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:teacher-delete', ['only' => ['destroy']]);
+    }
     function index()
     {
         $teachers = DB::table('teachers')->where('isDeleted', 0)->select(

@@ -58,6 +58,8 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="{{ url('/home') }}" class="nav-link">الرئيسية</a>
                 </li>
+                <li class="nav-item d-none d-sm-inline-block"><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
+                <li class="nav-item d-none d-sm-inline-block"><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
                 </li>
