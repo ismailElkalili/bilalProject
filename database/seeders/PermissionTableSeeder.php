@@ -45,6 +45,7 @@ class PermissionTableSeeder extends Seeder
             'committee-create',
             'committee-edit',
             'committee-delete'
+            
         ];
 
         foreach ($permissions as $permission) {

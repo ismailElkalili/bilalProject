@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\DB;
 
 class CommitteeController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:committee-list|product-create|product-edit|product-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:committee-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:committee-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:committee-delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $committees = DB::table('committees')->get();

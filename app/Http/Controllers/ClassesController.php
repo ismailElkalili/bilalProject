@@ -13,12 +13,20 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ClassesController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:classes-list|product-create|product-edit|product-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:classes-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:classes-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:classes-delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $classes = DB::table('classes')->get();
         $teachers = DB::table('teachers')->select(
             'id',
-            'name')->get();
+            'name'
+        )->get();
         $departments = DB::table('departments')->get();
         return view('dashboard.classes.index')->with('classes', $classes)->with('teachers', $teachers)->with('departments', $departments);
 
@@ -29,7 +37,8 @@ class ClassesController extends Controller
         $classes = DB::table('classes')->where('id', '=', $classesID)->first();
         $teachers = DB::table('teachers')->select(
             'id',
-            'name')->get();
+            'name'
+        )->get();
         $departments = DB::table('departments')->get();
 
         $students = DB::table('students')
@@ -51,12 +60,14 @@ class ClassesController extends Controller
 
     }
 
-    public function search(Request $request){
-        $classes = DB::table('classes')->where('name', 'like', '%'.$request['className'].'%')
-                ->get();
+    public function search(Request $request)
+    {
+        $classes = DB::table('classes')->where('name', 'like', '%' . $request['className'] . '%')
+            ->get();
         $teachers = DB::table('teachers')->select(
             'id',
-            'name')->get();
+            'name'
+        )->get();
         $departments = DB::table('departments')->get();
         return view('dashboard.classes.index')->with('classes', $classes)->with('teachers', $teachers)->with('departments', $departments);
     }
@@ -65,11 +76,11 @@ class ClassesController extends Controller
     {
         $classes = DB::table('classes')->get();
         $teachers = Teacher::with('Classes')->get();
-            $departments = DB::table('departments')->get();
+        $departments = DB::table('departments')->get();
         return view('dashboard.classes.create')
-        ->with('teachers', $teachers)
-        ->with('departments', $departments)
-        ->with('classes', $classes);
+            ->with('teachers', $teachers)
+            ->with('departments', $departments)
+            ->with('classes', $classes);
 
     }
 
@@ -95,8 +106,9 @@ class ClassesController extends Controller
         $classes = DB::table('classes')->where('id', '=', $classesID)->first();
         $teachers = DB::table('teachers')->select(
             'id',
-            'name')->get();
-            $departments = DB::table('departments')->get();
+            'name'
+        )->get();
+        $departments = DB::table('departments')->get();
         return view('dashboard.classes.edit')
             ->with('classes', $classes)
             ->with('teachers', $teachers)
@@ -116,11 +128,13 @@ class ClassesController extends Controller
     }
 
 
-    public function exportClasses(Request $request ){
+    public function exportClasses(Request $request)
+    {
         return Excel::download(new ExportClasses(), 'Classes.xlsx');
     }
 
-    public function exportClass(Request $request ){
+    public function exportClass(Request $request)
+    {
         return Excel::download(new ExportClass($request), 'Class.xlsx');
     }
     public function destroy($id)

@@ -10,6 +10,14 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:student-list|role-create|role-edit|role-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:student-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:student-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:student-delete', ['only' => ['destroy']]);
+    }
+
     public function index(Request $request)
     {
         $students = DB::table('students')->where('isDeleted', 0)->orderBy('id')

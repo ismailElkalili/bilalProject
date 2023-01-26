@@ -7,6 +7,13 @@ use Illuminate\Support\Facades\DB;
 
 class DepartmentController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:department-list|product-create|product-edit|product-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:department-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:department-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:department-delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $departments = DB::table('departments')->get();
