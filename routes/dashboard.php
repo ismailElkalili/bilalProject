@@ -9,6 +9,8 @@ use App\Http\Controllers\TeacherController;
 use App\Models\Classes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -81,4 +83,8 @@ Route::controller(ClassesController::class)->middleware('auth')->group(function 
 Route::controller(ArchiveController::class)->middleware('auth')->group(function () {
     Route::get('/archive/teacher', 'index_teacher');
     Route::get('/archive/student', 'index_student');
+});
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
 });
