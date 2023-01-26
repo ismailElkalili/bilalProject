@@ -1,7 +1,7 @@
 @extends('dashboard_layout.dashboard_main')
 @section('forms')
 
-    <div dir="rtl" class="row">
+<div dir="rtl" class="row">
 
         <div class="col-md-8 offset-md-2">
             <form action="{{ URL('/student/search') }}" method="GET">
@@ -91,38 +91,38 @@
 
                                 </td>
 
-                                @if ($student->state == 0)
-                                    <td>منتظم</td>
-                                @else
-                                    <td>منقطع</td>
-                                @endif
-                                @if (is_null($student->class_id))
-                                    <td>لايوجد</td>
-                                @else
-                                    @foreach ($classes as $class)
-                                        @if ($student->class_id == $class->id)
-                                            <td>{{ $class->name }}</td>
-                                        @endif
-                                    @endforeach
-                                @endif
-                                @if (is_null($student->class_id))
-                                    <td>لايوجد</td>
-                                @else
-                                    @foreach ($departments as $department)
-                                        @if ($student->dapartment_id == $department->id)
-                                            <td>{{ $department->name }}</td>
-                                        @endif
-                                    @endforeach
-                                @endif
-                                </td>
-                                <td>{{ $student->whatsapp_number }}</td>
-                                <td>{{ $student->phone_number }}</td>
-                                <td>{{ $student->name }}</td>
-                                <td>{{ $student->id }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                @endif
+                            @if ($student->state == 0)
+                                <td>منتظم</td>
+                            @else
+                                <td>منقطع</td>
+                            @endif
+                            @if (is_null($student->class_id))
+                                <td>لايوجد</td>
+                            @else
+                                @foreach ($classes as $class)
+                                    @if ($student->class_id == $class->id)
+                                        <td>{{ $class->name }}</td>
+                                    @endif
+                                @endforeach
+                            @endif
+                            @if (is_null($student->class_id))
+                                <td>لايوجد</td>
+                            @else
+                                @foreach ($departments as $department)
+                                    @if ($student->dapartment_id == $department->id)
+                                        <td>{{ $department->name }}</td>
+                                    @endif
+                                @endforeach
+                            @endif
+                            </td>
+                            <td>{{ $student->whatsapp_number }}</td>
+                            <td>{{ $student->phone_number }}</td>
+                            <td>{{ $student->name }}</td>
+                            <td>{{ $student->id }}</td>
+                        </tr>
+                    @endforeach
+
+                </tbody>
             </table>
 
         </div>

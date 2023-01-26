@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DepartmentController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:department-list|product-create|product-edit|product-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:department-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:department-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:department-delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $departments = DB::table('departments')->get();
@@ -19,15 +25,16 @@ class DepartmentController extends Controller
         return view('dashboard.department.index')->with('departments', $departments)->with('teachers', $teachers);
     }
 
-    public function search(Request $request){
-        $departments = DB::table('departments')->where('name', 'like', '%'.$request['departmentName'].'%')
-                ->get();
-                $teachers = DB::table('teachers')->select(
-                    'id',
-                    'name'
-                )->get();
-        
-                return view('dashboard.department.index')->with('departments', $departments)->with('teachers', $teachers);
+    public function search(Request $request)
+    {
+        $departments = DB::table('departments')->where('name', 'like', '%' . $request['departmentName'] . '%')
+            ->get();
+        $teachers = DB::table('teachers')->select(
+            'id',
+            'name'
+        )->get();
+
+        return view('dashboard.department.index')->with('departments', $departments)->with('teachers', $teachers);
     }
 
     public function create(Request $request)
@@ -38,11 +45,11 @@ class DepartmentController extends Controller
         return view('dashboard.department.create')->with('departments', $departments)->with('teachers', $teachers);
     }
 
-    public function store(Request $request)
+    public function store(DepartmentRequest $request)
     {
         $request->validate([
             'departmentName' => 'required|max:50',
-            'bossID' 
+            'bossID'
         ]);
 
         DB::table('departments')->insert([
@@ -67,7 +74,7 @@ class DepartmentController extends Controller
 
     }
 
-    public function update(Request $request, $departmentID)
+    public function update(DepartmentRequest $request, $departmentID)
     {
         DB::table('departments')->where('id', $departmentID)->update([
             'name' => $request['departmentName'],

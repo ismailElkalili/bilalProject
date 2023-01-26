@@ -1,6 +1,16 @@
 @extends('dashboard_layout.dashboard_main')
 @section('forms')
-    <form action="{{ URL('/student/store') }}" method="POST" style="margin-top: 15px;text-align: right">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul style="text-align: right">
+
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <form class="row" action="{{ URL('/student/store') }}" method="POST" style="margin-top: 15px;text-align: right">
         @csrf
         <div class="form-group " style="position: static; display: inline;">
             <label for="studentName" class="col-sm-4 col-form-label">اسم الطالب</label>
@@ -63,6 +73,7 @@
             <label for="department" class="col-sm-4 col-form-label">القسم</label>
             <select class="form-control custom-select form-control-border"
                 style="text-align: right;padding-left:10px"name="departmentID" id="departmentID">
+                <option value="">الرجاء اختيار قسم</option>
                 @foreach ($departments as $department)
                     <option value="{{ $department->id }}">{{ $department->name }}</option>
                 @endforeach
@@ -75,18 +86,19 @@
             <label for="class" class="col-sm-4 col-form-label">الحلقة</label>
             <select class=" form-control custom-select form-control-border" style="text-align: right;padding-left:10px"
                 name="classesID" id="classesID">
+                <option value="">الرجاء اختيار حلقة</option>
                 @foreach ($classes as $class)
                     <option value="{{ $class->id }}">{{ $class->name }}</option>
                 @endforeach
             </select>
         </div>
-        <div class="form-group float-left " style="margin-top: 35px;  display: inline;">
+        <div class="form-group float-left " style="margin-top: 15px;  display: inline;">
             <a href="{{ URL('/student') }}" class="btn btn-outline-danger" style="margin-right: 15px">إلغاء الأمر</a>
-                <button type="submit" class="btn btn-primary">إضافة</button>
-            </div>
+            <button type="submit" class="btn btn-primary">إضافة</button>
+        </div>
         </div>
     </form>
-   
+
 @endsection
 
 

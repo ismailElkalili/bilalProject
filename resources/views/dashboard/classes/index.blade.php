@@ -51,20 +51,39 @@
                                     </form>
                                 </td>
 
+
                                 <td>
                                     <a class="btn btn-outline-info" href="{{ URL('/classes/show/' . $class->id) }}">عرض</a>
+
+                            <td>
+                                <a class="btn btn-outline-info" href="{{ URL('/classes/' . $class->id) }}">عرض</a>
+
 
                                 </td>
                                 <td>
                                     <a class="btn btn-outline-primary" href="{{ URL('/classes/edit/' . $class->id) }}"><i
                                             class=" nav-icon fas fa-edit"></i></a>
 
+
                                 </td>
+
+                            </td>
+                            @if (is_null($class->department_id))
+                                <td>لا يوجد</td>
+                            @else
+
                                 @foreach ($departments as $department)
                                     @if ($department->id == $class->department_id)
                                         <td>{{ $department->name }}</td>
                                     @endif
                                 @endforeach
+
+
+
+                            @endif
+                            @if (is_null($class->teacher_id))
+                                <td>لا يوجد</td>
+                            @else
 
                                 @foreach ($teachers as $teacher)
                                     @if ($teacher->id == $class->teacher_id)
@@ -72,10 +91,18 @@
                                     @endif
                                 @endforeach
 
+
                                 <td>{{ $class->name }}</td>
                                 <td>{{ $class->id }}</td>
                             </tr>
                         @endforeach
+
+                            @endif
+                            <td>{{ $class->name }}</td>
+                            <td>{{ $class->id }}</td>
+                        </tr>
+                    @endforeach
+
 
                     </tbody>
                 @endif

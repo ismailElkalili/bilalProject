@@ -2,23 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CommiteeRequest;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class CommitteeController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:committee-list|product-create|product-edit|product-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:committee-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:committee-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:committee-delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         $committees = DB::table('committees')->get();
         return view('dashboard.committee.index')->with('committees', $committees);
     }
 
-    public function search(Request $request){
-        $committees = DB::table('committees')->where('name', 'like', '%'.$request['committeeName'].'%')
-                ->get();
-        
-                return view('dashboard.committee.index')->with('committees', $committees);
+    public function search(Request $request)
+    {
+        $committees = DB::table('committees')->where('name', 'like', '%' . $request['committeeName'] . '%')
+            ->get();
+
+        return view('dashboard.committee.index')->with('committees', $committees);
     }
 
     public function create(Request $request)
@@ -47,13 +56,8 @@ class CommitteeController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(CommiteeRequest $request)
     {
-        $request->validate([
-            'committeeName' => 'required|max:50',
-            'description' => 'required|max:1000',
-            'bossID'
-        ]);
 
         DB::table('committees')->insert([
             'name' => $request['committeeName'],
@@ -80,7 +84,7 @@ class CommitteeController extends Controller
 
     }
 
-    public function update(Request $request, $committeeID)
+    public function update(CommiteeRequest $request, $committeeID)
     {
         DB::table('committees')->where('id', $committeeID)->update([
             'name' => $request['committeeName'],

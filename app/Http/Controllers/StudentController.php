@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ExportStudent;
+use App\Http\Requests\StudentRequest;
 use App\Imports\ImportStudent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -10,6 +11,14 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:student-list|role-create|role-edit|role-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:student-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:student-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:student-delete', ['only' => ['destroy']]);
+    }
+
     public function index(Request $request)
     {
         $students = DB::table('students')->where('isDeleted', 0)->orderBy('id')
@@ -74,7 +83,7 @@ class StudentController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
         // $time = strtotime($request['dob']);
         // // dd($time);
@@ -114,7 +123,7 @@ class StudentController extends Controller
 
     }
 
-    public function update(Request $request, $studentID)
+    public function update(StudentRequest $request, $studentID)
     {
         DB::table('students')->where('id', $studentID)->update([
             'name' => $request['studentName'],
