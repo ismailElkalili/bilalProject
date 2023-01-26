@@ -1,21 +1,21 @@
 @extends('dashboard_layout.dashboard_main')
 @section('forms')
 
-<div dir="rtl" class="row">
+    <div dir="rtl" class="row">
 
-    <div class="col-md-8 offset-md-2">
-        <form action="{{ URL('/student/search') }}" method="GET">
-            <span style="position: absolute;margin:12px " align="center">
-                <i class="fa fa-search"></i>
-            </span>
-            <input style="padding-right :50px" type="search" id="studentName" name="studentName"
-                class="form-control form-control-lg" placeholder="أدخل اسم الطالب">
-        </form>
+        <div class="col-md-8 offset-md-2">
+            <form action="{{ URL('/student/search') }}" method="GET">
+                <span style="position: absolute;margin:12px " align="center">
+                    <i class="fa fa-search"></i>
+                </span>
+                <input style="padding-right :50px" type="search" id="studentName" name="studentName"
+                    class="form-control form-control-lg" placeholder="أدخل اسم الطالب">
+            </form>
+        </div>
+
     </div>
 
-</div>
-
-</div>
+    </div>
 
     <div class="card ">
         <div class="card-header" style="margin-top: 15px">
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class=" text-center">
-                     {{--  Export Students File  --}}
+                    {{--  Export Students File  --}}
                     <a class="col-md-3 btn btn-success"
                         style="margin-left: 15px;margin-right: 20px;align-items: center"href="{{ route('export-students') }}">تصدير
                         الطلاب</a>
@@ -46,81 +46,85 @@
 
             <div>
 
-               
+
 
             </div>
         </div>
         <div class="card-body float-right">
             <table class="table table-bordered float-right" style="text-align: right">
-                <thead>
+                @if ($students->count() == 0)
+                    <td style="vertical-align: middle; text-align: center;font-size: 18px;">
+                        لا يوجد بيانات
+                    </td>
+                @else
+                    <thead>
+                        <th style="width: 15px"></th>
+                        <th style="width: 15px"></th>
+                        <th style="width: 15px"></th>
+                        <th>الحالة</th>
+                        <th>الحلقة</th>
+                        <th>القسم</th>
+                        <th>رقم الواتساب</th>
+                        <th>رقم الجوال </th>
+                        <th style="width: 80px">اسم الطالب</th>
+                        <th style="width: 12px">الرقم</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($students as $student)
+                            <tr>
 
-                    <th style="width: 15px"></th>
-                    <th style="width: 15px"></th>
-                    <th style="width: 15px"></th>
-                    <th>الحالة</th>
-                    <th>الحلقة</th>
-                    <th>القسم</th>
-                    <th>رقم الواتساب</th>
-                    <th>رقم الجوال </th>
-                    <th style="width: 80px">اسم الطالب</th>
-                    <th style="width: 12px">الرقم</th>
-                </thead>
-                <tbody>
-                    @foreach ($students as $student)
-                        <tr>
+                                <td>
+                                    <form method="POST" action="{{ URL('/student/archive/' . $student->id) }}">
+                                        @csrf
+                                        <button type="sumbit" class="btn btn-outline-danger">أرشفة</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <a class="btn btn-block btn-outline-info"
+                                        href="{{ URL('/student/show/' . $student->id) }}">عرض</a>
 
-                            <td>
-                                <form method="POST" action="{{ URL('/student/archive/' . $student->id) }}">
-                                    @csrf
-                                    <button type="sumbit" class="btn btn-outline-danger">أرشفة</button>
-                                </form>
-                            </td>
-                            <td>
-                                <a class="btn btn-block btn-outline-info"
-                                    href="{{ URL('/student/show/' . $student->id) }}">عرض</a>
+                                </td>
+                                <td>
+                                    <a href="{{ URL('/student/edit/' . $student->id) }}"
+                                        class=" btn btn-block btn-outline-primary btn-sm"><i
+                                            class=" nav-icon fas fa-edit"></i></a>
 
-                            </td>
-                            <td>
-                                <a href="{{ URL('/student/edit/' . $student->id) }}"
-                                    class=" btn btn-block btn-outline-primary btn-sm"><i
-                                        class=" nav-icon fas fa-edit"></i></a>
+                                </td>
 
-                            </td>
-
-                            @if ($student->state == 0)
-                                <td>منتظم</td>
-                            @else
-                                <td>منقطع</td>
-                            @endif
-                            @if (is_null($student->class_id))
-                                <td>لايوجد</td>
-                            @else
-                                @foreach ($classes as $class)
-                                    @if ($student->class_id == $class->id)
-                                        <td>{{ $class->name }}</td>
-                                    @endif
-                                @endforeach
-                            @endif
-                            @if (is_null($student->class_id))
-                                <td>لايوجد</td>
-                            @else
-                                @foreach ($departments as $department)
-                                    @if ($student->dapartment_id == $department->id)
-                                        <td>{{ $department->name }}</td>
-                                    @endif
-                                @endforeach
-                            @endif
-                            </td>
-                            <td>{{ $student->whatsapp_number }}</td>
-                            <td>{{ $student->phone_number }}</td>
-                            <td>{{ $student->name }}</td>
-                            <td>{{ $student->id }}</td>
-                        </tr>
-                    @endforeach
-
-                </tbody>
+                                @if ($student->state == 0)
+                                    <td>منتظم</td>
+                                @else
+                                    <td>منقطع</td>
+                                @endif
+                                @if (is_null($student->class_id))
+                                    <td>لايوجد</td>
+                                @else
+                                    @foreach ($classes as $class)
+                                        @if ($student->class_id == $class->id)
+                                            <td>{{ $class->name }}</td>
+                                        @endif
+                                    @endforeach
+                                @endif
+                                @if (is_null($student->class_id))
+                                    <td>لايوجد</td>
+                                @else
+                                    @foreach ($departments as $department)
+                                        @if ($student->dapartment_id == $department->id)
+                                            <td>{{ $department->name }}</td>
+                                        @endif
+                                    @endforeach
+                                @endif
+                                </td>
+                                <td>{{ $student->whatsapp_number }}</td>
+                                <td>{{ $student->phone_number }}</td>
+                                <td>{{ $student->name }}</td>
+                                <td>{{ $student->id }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                @endif
             </table>
-           
+
         </div>
     </div>
     {{ $students->links() }}

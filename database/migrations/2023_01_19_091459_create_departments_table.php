@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->unsignedBigInteger('master_id')->nullable();
+            $table->string('name')->unique();
+            $table->unsignedBigInteger('teacher_id')->nullable();
             $table->integer('isDeleted')->default(0)->nullable();
             $table->timestamps();
 
             //Add Foreign Key
-            $table->foreign('master_id')->references('id')->on('teachers')->nullOnDelete();
+            $table->foreign('teacher_id')->references('id')->on('teachers')->nullOnDelete();
         });
     }
 

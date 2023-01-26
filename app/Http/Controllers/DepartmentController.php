@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -32,11 +33,8 @@ class DepartmentController extends Controller
     public function create(Request $request)
     {
         $departments = DB::table('departments')->get();
-        $teachers = DB::table('teachers')->select(
-            'id',
-            'name'
-        )->get();
-
+        $teachers = Teacher::with('Department')->get(); 
+        // dd( DB::table('teachers')->join('classes', 'teachers.id', '=', 'classes.teacher_id')->get());
         return view('dashboard.department.create')->with('departments', $departments)->with('teachers', $teachers);
     }
 
@@ -44,12 +42,12 @@ class DepartmentController extends Controller
     {
         $request->validate([
             'departmentName' => 'required|max:50',
-            'bossID'
+            'bossID' 
         ]);
 
         DB::table('departments')->insert([
             'name' => $request['departmentName'],
-            'master_id' => $request['bossID'],
+            'teacher_id' => $request['bossID'],
 
         ]);
 
@@ -73,7 +71,7 @@ class DepartmentController extends Controller
     {
         DB::table('departments')->where('id', $departmentID)->update([
             'name' => $request['departmentName'],
-            'master_id' => $request['bossID'],
+            'teacher_id' => $request['bossID'],
         ]);
         return redirect()->action([DepartmentController::class, 'index']);
     }

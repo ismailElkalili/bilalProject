@@ -14,8 +14,11 @@
             <select class=" form-control custom-select form-control-border" style="text-align: right;padding-left:10px"
                 name="bossID" id="bossID">
                 <option value="-1">اختر مسؤول القسم</option>
+                
                 @foreach ($teachers as $teacher)
-                    <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                 @if($teacher['Department'] == null)  
+                <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                 @endif
                 @endforeach
             </select>
         </div>
