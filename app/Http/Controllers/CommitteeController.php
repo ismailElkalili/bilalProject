@@ -32,10 +32,11 @@ class CommitteeController extends Controller
 
     public function create(Request $request)
     {
-        $teachers = DB::table('teachers')->select(
-            'id',
-            'name'
-        )->get();
+        $teachers = DB::select('SELECT t.*
+        FROM teachers AS t WHERE NOT(
+         t.id in ( SELECT c.matser_id FROM committees AS c WHERE c.matser_id = t.id
+         ))
+        ');
         return view('dashboard.committee.create')->with('teachers', $teachers);
 
     }

@@ -25,9 +25,7 @@
             <select style="text-align: right" class="form-control custom-select" name="teacherID" id="teacherID">
                 <option value="">اختار المحفظ</option>
                 @foreach ($teachers as $teacher)
-                    @if ($teacher['Classes'] == null)
                         <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
-                    @endif
                 @endforeach
             </select>
         </div>

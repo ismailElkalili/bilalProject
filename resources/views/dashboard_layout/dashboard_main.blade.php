@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="ar">
+<html lang="ar" style="height: 100%;">
 
 <head>
     <meta charset="utf-8">
@@ -44,7 +44,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini" style="height: 100%;">
     <div class="wrapper">
 
         <!-- Navbar -->
@@ -58,8 +58,10 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="{{ url('/home') }}" class="nav-link">الرئيسية</a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block"><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
-                <li class="nav-item d-none d-sm-inline-block"><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
+                <li class="nav-item d-none d-sm-inline-block"><a class="nav-link"
+                        href="{{ route('users.index') }}">Manage Users</a></li>
+                <li class="nav-item d-none d-sm-inline-block"><a class="nav-link"
+                        href="{{ route('roles.index') }}">Manage Role</a></li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
                 </li>
@@ -257,12 +259,14 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview" style="display: none;">
+                            
                                 <li class="nav-item">
                                     <a href="{{ URL('/teacher') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>عرض المحفظين</p>
                                     </a>
                                 </li>
+                            
                                 <li class="nav-item">
                                     <a href="{{ URL('/teacher/create') }}" class="nav-link">
                                         <i class="nav-icon far fa-plus-square"></i>

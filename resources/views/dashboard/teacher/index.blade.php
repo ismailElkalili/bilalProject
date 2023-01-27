@@ -11,7 +11,6 @@
                     class="form-control form-control-lg" placeholder="أدخل اسم المحفظ">
             </form>
         </div>
-        س
     </div>
 
     </div>

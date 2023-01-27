@@ -26,13 +26,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //API
 Route::get("/data", [TeacherControllerApi::class, 'getData']);
-Route::get("/data", [TeacherControllerApi::class, 'getData']);
 
 require __DIR__ . '/dashboard.php';
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/file-import',[UserController::class,'importView'])->name('import-view');
 Route::post('/import',[UserController::class,'import'])->name('import');

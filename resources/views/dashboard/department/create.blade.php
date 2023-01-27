@@ -25,10 +25,8 @@
                 name="bossID" id="bossID">
                 <option value="-1">اختر مسؤول القسم</option>
                 
-                @foreach ($teachers as $teacher)
-                 @if($teacher['Department'] == null)  
+                @foreach ($teachers as $teacher)  
                 <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
-                 @endif
                 @endforeach
             </select>
         </div>

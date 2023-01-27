@@ -28,8 +28,6 @@ class CommiteeRequest extends FormRequest
             'committeeName' => 'required|max:30',
             'description' => 'required|max:1000',
             'bossID' => 'required',
-            'departmentID' => 'required'
-
         ];
     }
     public function messages()
@@ -40,7 +38,6 @@ class CommiteeRequest extends FormRequest
             'committeeName.max' => 'اسم اللجنة يجب أن يكون أقل من 30 حرف',
             'description.max' => 'وصف اللجنة يجب أن يكون أقل من 1000 حرف ',
             'bossID.required' => 'أرجو ادخال مسؤول اللجنة',
-            'departmentID.required' => 'أرجو ادخال القسم'
 
         ];
     }

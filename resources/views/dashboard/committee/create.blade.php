@@ -31,7 +31,9 @@
             <select style="text-align: right"class="form-control" name="bossID" id="bossID">
                 <option value="">اختر مسؤول اللجنة</option>
                 @foreach ($teachers as $teacher)
+                    @if($teacher->isDeleted == 0)
                     <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                    @endif
                 @endforeach
             </select>
         </div>

@@ -76,7 +76,12 @@ class ClassesController extends Controller
     public function create(Request $request)
     {
         $classes = DB::table('classes')->get();
-        $teachers = Teacher::with('Classes')->get();
+        $teachers = DB::select('SELECT t.*
+        FROM teachers AS t WHERE NOT(
+         t.id in ( SELECT c.teacher_id FROM classes AS c WHERE c.teacher_id = t.id
+         ) OR
+         t.id in ( SELECT d.teacher_id FROM departments AS d WHERE d.teacher_id = t.id   ))
+        ');
         $departments = DB::table('departments')->get();
         return view('dashboard.classes.create')
             ->with('teachers', $teachers)
@@ -101,10 +106,12 @@ class ClassesController extends Controller
     public function edit($classesID)
     {
         $classes = DB::table('classes')->where('id', '=', $classesID)->first();
-        $teachers = DB::table('teachers')->select(
-            'id',
-            'name'
-        )->get();
+        $teachers = DB::select('SELECT t.*
+        FROM teachers AS t WHERE NOT(
+         t.id in ( SELECT c.teacher_id FROM classes AS c WHERE c.teacher_id = t.id
+         ) OR
+         t.id in ( SELECT d.teacher_id FROM departments AS d WHERE d.teacher_id = t.id   ))
+        ');
         $departments = DB::table('departments')->get();
         return view('dashboard.classes.edit')
             ->with('classes', $classes)
