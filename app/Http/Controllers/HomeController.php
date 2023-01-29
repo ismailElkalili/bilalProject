@@ -6,8 +6,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Concerns\ToArray;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
@@ -37,9 +39,12 @@ class HomeController extends Controller
         // foreach($permissions as $p){
         //     dd(Permission::findById($p->permission_id,null));
         // }
-         
-        
-        
+
+        // dd(Permission::getPermissions()->toArray());
+       
+         //dd(Gate::forUser(Auth::user())->allows('teacher-list'));
+       
+
         // $user = User::find(Auth::id());
         // $user = User::find($id);
         return view('dashboard_layout.dashboard_main');

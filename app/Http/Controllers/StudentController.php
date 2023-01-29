@@ -30,7 +30,7 @@ class StudentController extends Controller
                 'whatsapp_number',
                 'class_id',
                 'state'
-            )->paginate(25);
+            )->paginate(15);
 
         $departments = DB::table('departments')
             ->get();

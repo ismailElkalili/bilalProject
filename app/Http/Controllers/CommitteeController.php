@@ -45,12 +45,12 @@ class CommitteeController extends Controller
     {
 
         $committee = DB::table('committees')->where('id', '=', $committeeID)->first();
-        $teachers = DB::table('teachers')->select(
+        $teachers = DB::table('teachers')->where('committees_id', '=', $committee->id)->select(
             'id',
             'name',
             'committees_id'
         )->get();
-
+            
         return view('dashboard.committee.show')
             ->with('committee', $committee)
             ->with('teachers', $teachers);
@@ -74,7 +74,7 @@ class CommitteeController extends Controller
     public function edit($committeeID)
     {
         $committee = DB::table('committees')->where('id', '=', $committeeID)->first();
-        $teachers = DB::table('teachers')->select(
+        $teachers = DB::table('teachers')->where('committees_id', '=', $committee->id)->select(
             'id',
             'name'
         )->get();

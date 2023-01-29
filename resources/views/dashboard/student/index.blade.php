@@ -66,7 +66,7 @@
                         <th>القسم</th>
                         <th>رقم الواتساب</th>
                         <th>رقم الجوال </th>
-                        <th style="width: 80px">اسم الطالب</th>
+                        <th>اسم الطالب</th>
                         <th style="width: 12px">الرقم</th>
                     </thead>
                     <tbody>
@@ -105,7 +105,7 @@
                                         @endif
                                     @endforeach
                                 @endif
-                                @if (is_null($student->class_id))
+                                @if (is_null($student->dapartment_id))
                                     <td>لايوجد</td>
                                 @else
                                     @foreach ($departments as $department)

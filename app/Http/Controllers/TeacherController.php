@@ -3,23 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ExportTeacher;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 use App\Http\Requests\TeacherRequest;
 use App\Imports\ImportTeacher;
-use Maatwebsite\Excel\Excel as ExcelExcel;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class TeacherController extends Controller
 {
-    function __construct()
+
+       
+    public function __construct()
     {
         $this->middleware('permission:teacher-list|product-create|product-edit|product-delete', ['only' => ['index', 'show']]);
         $this->middleware('permission:teacher-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:teacher-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:teacher-delete', ['only' => ['destroy']]);
     }
-    function index()
+    public function index()
     {
         $teachers = DB::table('teachers')->where('isDeleted', 0)->select(
             'id',
@@ -33,15 +34,17 @@ class TeacherController extends Controller
         return view('dashboard.teacher.index')->with('teachers', $teachers);
 
     }
-    public function search(Request $request){
-        $teachers = DB::table('teachers')->where('name', 'like', '%'.$request['teacherName'].'%')
-                ->paginate(25);
-        
-                return view('dashboard.teacher.index')->with('teachers', $teachers);
+    public function search(Request $request)
+    {
+        $teachers = DB::table('teachers')->where('name', 'like', '%' . $request['teacherName'] . '%')
+            ->paginate(25);
+
+        return view('dashboard.teacher.index')->with('teachers', $teachers);
     }
 
-    function show($id)
+    public function show($id)
     {
+       
         $commname = '';
         $comm = DB::table('committees')->get();
         $teacher = DB::table('teachers')->select(
@@ -65,16 +68,17 @@ class TeacherController extends Controller
         return view('dashboard.teacher.show')
             ->with('teacher', $teacher)
             ->with('commname', $commname)
-            ->with('classes', $class);
+            ->with('classes', $class)
+            ;
 
     }
-    function create()
+    public function create()
     {
         $committees = DB::table('committees')->select('id', 'name')->get();
         return view('dashboard.teacher.create')->with('committees', $committees);
     }
 
-    function store(TeacherRequest $request)
+    public function store(TeacherRequest $request)
     {
         $time = strtotime($request['dob']);
         if ($request['committee'] == -1) {
@@ -96,7 +100,7 @@ class TeacherController extends Controller
         return redirect('/teacher');
 
     }
-    function edit($id)
+    public function edit($id)
     {
         $teacher = DB::table('teachers')->where('id', $id)->first();
         $committees = DB::table('committees')->select('id', 'name')->get();
@@ -106,7 +110,7 @@ class TeacherController extends Controller
             ->with("committees", $committees);
     }
 
-    function update(TeacherRequest $request)
+    public function update(TeacherRequest $request)
     {
         $time = strtotime($request['dob']);
         $newformat = date('Y-m-d', $time);
@@ -127,7 +131,6 @@ class TeacherController extends Controller
 
     }
 
-
     public function importView(Request $request)
     {
         return view('dashboard.teacher.index');
@@ -144,13 +147,18 @@ class TeacherController extends Controller
         return Excel::download(new ExportTeacher, 'Teachers.xlsx');
     }
 
-
-    function destroy($id)
+    public function archive($id)
     {
         DB::table('teachers')->where('id', $id)->update(['isDeleted' => 1]);
         return redirect('/teacher');
     }
-    function restore($id)
+    public function destroy($id)
+    {
+        DB::table('teachers')->where('id', $id)->delete();
+        return redirect('/teacher');
+    }
+
+    public function restore($id)
     {
         DB::table('teachers')->where('id', $id)->update(['isDeleted' => 0]);
         return redirect('/teacher');

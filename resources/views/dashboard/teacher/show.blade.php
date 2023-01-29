@@ -11,7 +11,6 @@
         <div class="card-body">
             <table class="table table-bordered">
                 <thead>
-                    
                     <th>اللجنة</th>
                     <th>المؤهل العلمي</th>
                     <th>التخصص</th>
@@ -25,11 +24,37 @@
                 <tbody>
                     {{-- @foreach ($teachers as $teacher) --}}
                     <tr>
-                        <td>{{ $commname }}</td>
-                        <td>{{ $teacher->qualification }}</td>
-                        <td>{{ $teacher->specialization }}</td>
-                        <td>{{ $teacher->whatsapp_number }}</td>
-                        <td>{{ $teacher->date_of_birth }}</td>
+
+                        @if (empty($commname))
+                            <td>لا يوجد</td>
+                        @else
+                            <td>{{ $commname }}</td>
+                        @endif
+
+                        @if (empty($teacher->qualification))
+                            <td>لا يوجد</td>
+                        @else
+                            <td>{{ $teacher->qualification }}</td>
+                        @endif
+
+                        @if (empty($teacher->specialization))
+                            <td>لا يوجد</td>
+                        @else
+                            <td>{{ $teacher->specialization }}</td>
+                        @endif
+
+                        @if (empty($teacher->whatsapp_number))
+                            <td>لا يوجد</td>
+                        @else
+                            <td>{{ $teacher->whatsapp_number }}</td>
+                        @endif
+
+                        @if (empty($teacher->date_of_birth))
+                            <td>لا يوجد</td>
+                        @else
+                            <td>{{ $teacher->date_of_birth }}</td>
+                        @endif
+
                         <td>{{ $teacher->nation_id }}</td>
                         <td>{{ $teacher->phone_number }}</td>
                         <td>{{ $teacher->name }}</td>
@@ -50,22 +75,26 @@
         </div>
         <div class="card-body float-right">
             <table class="table table-bordered float-right" style="text-align: right">
-                <thead>
-                    <th style="width: 30px">عرض الحلقة</th>
-                    <th>اسم الحلقة</th>
-                    <th style="width: 10px">الرقم</th>
-                </thead>
-                <tbody>
-                    @foreach ($classes as $class)
-                        <tr>
-                            <td>
-                                <a class="btn btn-info" href="{{ URL('/classes/' . $class->id) }}">عرض الحلقة </a>
-                            </td>
-                            <td>{{ $class->name }}</td>
-                            <td>{{ $class->id }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
+                @if ($classes->count() == 0)
+                    <td style="vertical-align: middle; text-align: center;font-size: 18px;">لا يوجد حلقات</td>
+                @else
+                    <thead>
+                        <th style="width: 30px">عرض الحلقة</th>
+                        <th>اسم الحلقة</th>
+                        <th style="width: 10px">الرقم</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($classes as $class)
+                            <tr>
+                                <td>
+                                    <a class="btn btn-info" href="{{ URL('/classes/show/' . $class->id) }}">عرض الحلقة </a>
+                                </td>
+                                <td>{{ $class->name }}</td>
+                                <td>{{ $class->id }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                @endif
             </table>
         </div>
     </div>

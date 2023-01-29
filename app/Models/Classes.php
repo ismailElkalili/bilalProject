@@ -16,8 +16,5 @@ class Classes extends Model
     ];
 
 
-    public function teachers()
-    {
-        return $this->belongsTo(Teacher::class);
-    }
+   
 }

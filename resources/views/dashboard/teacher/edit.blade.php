@@ -1,7 +1,7 @@
 @extends('dashboard_layout.dashboard_main')
 @section('forms')
     @if ($errors->any())
-        <div class="alert alert-danger">
+        <div dir="rtl" class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -9,7 +9,7 @@
             </ul>
         </div>
     @endif
-    <form action="{{ URL('/teacher/update') }}" method="POST" style="margin-top: 40px">
+    <form dir="rtl" action="{{ URL('/teacher/update') }}" method="POST" style="margin-top: 40px">
         @csrf
         <div class="form-group row" style="position: static; display: inline;">
             <div class="col-sm-10">
@@ -51,7 +51,7 @@
 
             <div class="col-sm-10">
                 <label for="description" class="col-sm-4 col-form-label">تاريخ الميلاد</label>
-                <input type="datetime" class="form-control" name="dob" id="description"
+                <input type="date" class="form-control" name="dob" id="description"
                     value="{{ $teacher->date_of_birth }}">
             </div>
         </div>
@@ -62,7 +62,7 @@
             <div class="form-group">
                 <label>اللجان</label>
                 <select class="  custom-select form-control-border" name="committee" id="committee">
-                    <option value="-1"></option>
+                    <option value="">لا يوجد لجنة</option>
                     @foreach ($committees as $commite)
                         @if ($teacher->committees_id == $commite->id)
                             <option selected value="{{ $commite->id }}">{{ $commite->name }}</option>

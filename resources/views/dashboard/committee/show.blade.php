@@ -27,7 +27,7 @@
                     @if ($committee->matser_id == $teacher->id)
                         <option selected value="{{ $teacher->id }}">{{ $teacher->name }}</option>
                     @else{
-                        <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                        <option value="">لا يوجد مسؤول</option>
                         }
                     @endif
                 @endforeach
@@ -38,20 +38,23 @@
         <div class="card-body rowfloat-right">
             <table class="table table-bordered float-right" style="text-align: right">
                 <thead>
-
                     <th style="width: 10px">الرقم</th>
                     <th>الاسم</th>
                 </thead>
                 <tbody>
-                    @foreach ($teachers as $teacher)
-                        @if ($committee->matser_id != $teacher->id && $teacher->committees_id == $committee->id)
-                            <tr>
-
-                                <td>{{ $teacher->id }}</td>
-                                <td>{{ $teacher->name }}</td>
-                            </tr>
-                        @endif
-                    @endforeach
+                    @if ($teachers->count() == 0 || ($teachers[0]->id == $committee->matser_id && $teachers->count() == 1))
+                        <td></td>
+                        <td style="vertical-align: middle; text-align: center;font-size: 18px;">لا يوجد اعضاء</td>
+                    @else
+                        @foreach ($teachers as $teacher)
+                            @if ($committee->matser_id != $teacher->id)
+                                <tr>
+                                    <td>{{ $teacher->id }}</td>
+                                    <td>{{ $teacher->name }}</td>
+                                </tr>
+                            @endif
+                        @endforeach
+                    @endif
 
                 </tbody>
             </table>

@@ -104,7 +104,7 @@
                     <option value="">غير موجود في حلقة</option>
                 @endif
                 @foreach ($classes as $class)
-                    @if ($department->id == $student->class_id)
+                    @if ($class->id == $student->class_id)
                         <option selected value="{{ $class->id }}">{{ $class->name }}</option>
                     @else{
                         <option value="{{ $class->id }}">{{ $class->name }}</option>

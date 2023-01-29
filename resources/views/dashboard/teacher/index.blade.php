@@ -75,11 +75,11 @@
                         @foreach ($teachers as $teacher)
                             <tr>
                                 <td>
-                                    <form method="POST" action="{{ URL('teacher/destroy/' . $teacher->id) }}">
+                                    <form method="POST" action="{{ URL('teacher/archive/' . $teacher->id) }}">
                                         {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
                                         @csrf
                                         <button class=" btn btn-block btn-outline-danger " type="sumbit"
-                                            class="btn btn-danger">حذف</button>
+                                            class="btn btn-danger">ارشفة</button>
                                     </form>
                                 </td>
                                 <td>

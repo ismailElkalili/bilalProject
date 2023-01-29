@@ -24,12 +24,13 @@
             <div class="form-group">
                 <label>المسؤول</label>
                 <select class="form-control" name="teacherID" id="teacherID">
+                    @if (is_null($teacherclass))
+                        <option value="">لا يوجد محفظ</option>
+                    @elseif ($teacherclass->id == $classes->teacher_id)
+                        <option selected value="{{ $teacherclass->id }}">{{ $teacherclass->name }}</option>
+                    @endif
                     @foreach ($teachers as $teacher)
-                        @if ($teacher->id == $classes->teacher_id)
-                            <option selected value="{{ $teacher->id }}">{{ $teacher->name }}</option>
-                        @else
-                            <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
-                        @endif
+                        <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -42,15 +43,15 @@
                 <select class="form-control" name="departmentID" id="departmentID">
                     @if (is_null($classes->department_id))
                         <option value="">أختر القسم</option>
-                    @else
-                        @foreach ($departments as $department)
-                            @if ($department->id == $classes->department_id)
-                                <option selected value="{{ $department->id }}">{{ $department->name }}</option>
-                            @else
-                                <option value="{{ $department->id }}">{{ $department->name }}</option>
-                            @endif
-                        @endforeach
                     @endif
+                    @foreach ($departments as $department)
+                        @if ($department->id == $classes->department_id)
+                            <option selected value="{{ $department->id }}">{{ $department->name }}</option>
+                        @else
+                            <option value="{{ $department->id }}">{{ $department->name }}</option>
+                        @endif
+                    @endforeach
+
                 </select>
             </div>
         </div>

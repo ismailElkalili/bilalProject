@@ -37,6 +37,7 @@ Route::controller(TeacherController::class)->middleware('auth')->group(function 
     Route::post('/teacher/store', 'store');
     Route::post('/teacher/update', 'update');
     Route::get('/teacher/edit/{id}', 'edit');
+    Route::post('/teacher/archive/{id}', 'archive');
     Route::post('/teacher/destroy/{id}', 'destroy');
     Route::post('/teacher/restore/{id}', 'restore');
     Route::get('/teacher/show/{id}', 'show');
@@ -65,6 +66,7 @@ Route::controller(DepartmentController::class)->middleware('auth')->group(functi
     Route::post('/departments/update/{departmentID}', 'update');
     Route::post('/departments/destroy/{id}', 'destroy');
     Route::get('/departments', 'index');
+    Route::get('/departments/show/{departmentID}', 'show');
     Route::get('/departments/search', 'search');
    
 });
@@ -76,7 +78,7 @@ Route::controller(ClassesController::class)->middleware('auth')->group(function 
     Route::post('/classes/destroy/{id}', 'destroy');
     Route::post('/classes/store', 'store');
     Route::get('/classes', 'index');
-    Route::get('/classes/{classesID}', 'show'); 
+    Route::get('/classes/show/{classesID}', 'show'); 
     Route::get('/classes/search', 'search');
 
 });

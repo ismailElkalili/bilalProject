@@ -17,6 +17,7 @@
                     <thead>
                         <th style="width: 20px"></th>
                         <th style="width: 20px"></th>
+                        <th style="width: 20px"></th>
                         <th>رقم الهوية</th>
                         <th>تاريخ الميلاد</th>
                         <th>رقم الواتس</th>
@@ -27,6 +28,12 @@
                     <tbody>
                         @foreach ($teachers as $teacher)
                             <tr>
+                                <td>
+                                    <form method="POST" action="{{ URL('/teacher/destroy/' . $teacher->id) }}">
+                                        @csrf
+                                        <button type="sumbit" class="btn btn-danger">حذف نهائي</button>
+                                    </form>
+                                </td>
                                 <td>
                                     <form method="POST" action="{{ URL('teacher/restore/' . $teacher->id) }}">
                                         {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}

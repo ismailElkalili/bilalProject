@@ -48,7 +48,7 @@
 
                                 <td>
                                     <a class=" btn btn-block btn-outline-info btn-sm"
-                                        href="{{ URL('/departments/' . $departmane->id) }}">عرض</a>
+                                        href="{{ URL('/departments/show/' . $departmane->id) }}">عرض</a>
                                 </td>
                                 <td>
                                     <a href="{{ URL('/departments/edit/' . $departmane->id) }}"
@@ -56,11 +56,15 @@
                                             class=" nav-icon fas fa-edit"></i></a>
 
                                 </td>
-                                @foreach ($teachers as $teacher)
-                                    @if ($teacher->id == $departmane->teacher_id)
-                                        <td>{{ $teacher->name }}</td>
-                                    @endif
-                                @endforeach
+                                @if (is_null($departmane->teacher_id))
+                                    <td>لا يوجد مسؤول</td>
+                                @else
+                                    @foreach ($teachers as $teacher)
+                                        @if ($teacher->id == $departmane->teacher_id)
+                                            <td>{{ $teacher->name }}</td>
+                                        @endif
+                                    @endforeach
+                                @endif
                                 <td>{{ $departmane->name }}</td>
                                 <td>{{ $departmane->id }}</td>
                             </tr>

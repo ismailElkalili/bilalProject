@@ -27,6 +27,24 @@ class DepartmentController extends Controller
         return view('dashboard.department.index')->with('departments', $departments)->with('teachers', $teachers);
     }
 
+    public function show($departmentID)
+    {
+        $departments = DB::table('departments')->where('id', '=', $departmentID)->first();
+        $teachers = DB::select('SELECT t.*
+        FROM teachers AS t WHERE NOT(
+         t.id in ( SELECT c.teacher_id FROM classes AS c WHERE c.teacher_id = t.id
+         ) OR
+         t.id in ( SELECT d.teacher_id FROM departments AS d WHERE d.teacher_id = t.id   ))
+        ');
+        $allTeacher = DB::table('teachers')->get();
+        $classes = DB::table('classes')->where('department_id', '=', $departmentID)->get();
+        return view('dashboard.department.show')
+        ->with('departments', $departments)
+        ->with('teachers', $teachers)
+        ->with('classes',$classes)
+        ->with('allTeacher',$allTeacher);
+
+    }
     public function search(Request $request)
     {
         $departments = DB::table('departments')->where('name', 'like', '%' . $request['departmentName'] . '%')
@@ -42,40 +60,14 @@ class DepartmentController extends Controller
     public function create(Request $request)
     {
         $departments = DB::table('departments')->get();
-        // $teachers = Teacher::with('Department')->get();
-
         $teachers = DB::select('SELECT t.*
         FROM teachers AS t WHERE NOT(
          t.id in ( SELECT c.teacher_id FROM classes AS c WHERE c.teacher_id = t.id
          ) OR
          t.id in ( SELECT d.teacher_id FROM departments AS d WHERE d.teacher_id = t.id   ))
         ');
-
-        // dd(
-        //     DB::select('SELECT t.*
-        //     FROM teachers AS t WHERE NOT(
-        //      t.id in ( SELECT c.teacher_id FROM classes AS c WHERE c.teacher_id = t.id
-        //      ) OR
-        //      t.id in ( SELECT d.teacher_id FROM departments AS d WHERE d.teacher_id = t.id   ))
-        //     ')
-
-        // );
-
       
         return view('dashboard.department.create')->with('departments', $departments)->with('teachers', $teachers);
-
-//         SELECT
-//     t.*
-// FROM
-//     teachers t
-// WHERE NOT(
-//     t.id in (
-//         SELECT c.teacher_id FROM classes c WHERE c.teacher_id = t.id
-// ) OR
-// t.id in (
-//         SELECT d.teacher_id FROM departments d WHERE d.teacher_id = t.id
-// )
-// )
 
     }
 
@@ -105,8 +97,12 @@ class DepartmentController extends Controller
          ) OR
          t.id in ( SELECT d.teacher_id FROM departments AS d WHERE d.teacher_id = t.id   ))
         ');
-
-        return view('dashboard.department.edit')->with('departments', $departments)->with('teachers', $teachers);
+        $teacherClass = DB::table('teachers')->where('id', '=', $departments->teacher_id)->first();
+        
+        return view('dashboard.department.edit')
+        ->with('departments', $departments)
+        ->with('teachers', $teachers)
+        ->with('teacherClass',$teacherClass);
 
     }
 
@@ -116,7 +112,9 @@ class DepartmentController extends Controller
             'name' => $request['departmentName'],
             'teacher_id' => $request['bossID'],
         ]);
-        return redirect()->action([DepartmentController::class, 'index']);
+        
+        return  redirect('/departments');
+
     }
 
     public function destroy($id)

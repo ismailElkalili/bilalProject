@@ -20,13 +20,13 @@
         </div>
         <div class="form-group ">
             <label for="description" class="col-sm-4 col-form-label">وصف اللجنة</label>
-
             <input style="text-align: right" type="text" class="form-control" value="{{ $committee->description }}"
                 name="description" id="description" placeholder="description">
         </div>
         <div class="form-group">
             <label for="bossID" class="col-sm-4 col-form-label">مسؤول اللجنة</label>
             <select style="text-align: right" class="form-control custom-select" name="bossID" id="bossID">
+                <option value="">لا  يوجد مسؤول</option>
                 @foreach ($teachers as $teacher)
                     @if ($committee->matser_id == $teacher->id)
                         <option selected value="{{ $teacher->id }}">{{ $teacher->name }}</option>

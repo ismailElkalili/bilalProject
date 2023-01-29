@@ -5,16 +5,13 @@ namespace App\Http\Controllers;
 use App\Exports\ExportClass;
 use App\Exports\ExportClasses;
 use App\Http\Requests\ClassesRequest;
-use App\Models\Classes;
-use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Excel as ExcelExcel;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ClassesController extends Controller
 {
-    function __construct()
+    public function __construct()
     {
         $this->middleware('permission:classes-list|product-create|product-edit|product-delete', ['only' => ['index', 'show']]);
         $this->middleware('permission:classes-create', ['only' => ['create', 'store']]);
@@ -51,8 +48,8 @@ class ClassesController extends Controller
                 'whatsapp_number',
                 'class_id',
                 'state'
-            )->get();
-
+            )->where('class_id', '=', $classes->id)->where('state', '=', 0)->get();
+                
         return view('dashboard.classes.show')
             ->with('classes', $classes)
             ->with('teachers', $teachers)
@@ -92,7 +89,7 @@ class ClassesController extends Controller
 
     public function store(ClassesRequest $request)
     {
-        
+
         DB::table('classes')->insert([
             'name' => $request['classesName'],
             'teacher_id' => $request['teacherID'],
@@ -112,14 +109,16 @@ class ClassesController extends Controller
          ) OR
          t.id in ( SELECT d.teacher_id FROM departments AS d WHERE d.teacher_id = t.id   ))
         ');
+        $teacherClass = DB::table('teachers')->where('id', '=', $classes->teacher_id)->first();
+
         $departments = DB::table('departments')->get();
         return view('dashboard.classes.edit')
             ->with('classes', $classes)
             ->with('teachers', $teachers)
-            ->with('departments', $departments);
+            ->with('departments', $departments)
+            ->with('teacherclass', $teacherClass);
 
     }
-
 
     public function update(ClassesRequest $request, $classesID)
     {
@@ -130,7 +129,6 @@ class ClassesController extends Controller
         ]);
         return redirect()->action([ClassesController::class, 'index']);
     }
-
 
     public function exportClasses(Request $request)
     {

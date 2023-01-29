@@ -5,6 +5,7 @@
         href="{{ URL('/export-class/' . $classes->id) }}">تصدير بيانات الحلقة</a>
 
     <form action="" method="" style="margin-top: 12px;text-align: right;">
+        @csrf
         <div class="form-group">
             <label for="classesName" class="col-sm-4 col-form-label">اسم الحلقة</label>
             <input style="text-align: right;"disabled type="text" class="form-control" value="{{ $classes->name }}"
@@ -42,38 +43,37 @@
         <div class="col-sm-12">
             <div class="card-body">
                 <table class="table table-bordered float-right" style="text-align: right">
-                    <thead>
-                        <th style="width: 15px"></th>
-                        {{-- <th style="width: 15px"></th> --}}
-                        <th style="width: 15px"></th>
-                        <th>الحالة</th>
-                        <th>القسم</th>
-                        <th>رقم الواتساب</th>
-                        <th>رقم الجوال </th>
-                        <th>اسم الطالب</th>
-                        <th style="width: 10px">الرقم</th>
-                    </thead>
-                    <tbody>
-                        @foreach ($students as $student)
-                            @if ($student->class_id == $classes->id && $student->state == 0)
+                    @if ($students->count() == 0)
+                        <td style="vertical-align: middle; text-align: center;font-size: 18px;">لا يوجد طلاب</td>
+                    @else
+                        <thead>
+                            <th style="width: 15px"></th>
+                            {{-- <th style="width: 15px"></th> --}}
+                            <th style="width: 15px"></th>
+                            <th>الحالة</th>
+                            <th>القسم</th>
+                            <th>رقم الواتساب</th>
+                            <th>رقم الجوال </th>
+                            <th>اسم الطالب</th>
+                            <th style="width: 10px">الرقم</th>
+                        </thead>
+                        <tbody>
+                            @foreach ($students as $student)
                                 <tr>
                                     <td>
                                         <a class="btn btn-outline-info"
                                             href="{{ URL('/student/' . $student->id) }}">عرض</a>
-
                                     </td>
                                     <td>
                                         <a class="btn btn-outline-primary"
                                             href="{{ URL('/student/edit/' . $student->id) }}"><i
                                                 class=" nav-icon fas fa-edit"></i></a>
-
                                     </td>
                                     @if ($student->state == 0)
                                         <td>منتظم</td>
                                     @else
                                         <td>منقطع</td>
                                     @endif
-
                                     @foreach ($departments as $department)
                                         @if ($student->dapartment_id == $department->id)
                                             <td>{{ $department->name }}</td>
@@ -85,8 +85,8 @@
                                     <td>{{ $student->name }}</td>
                                     <td>{{ $student->id }}</td>
                                 </tr>
-                            @endif
-                        @endforeach
+                            @endforeach
+                    @endif
 
                     </tbody>
                 </table>
