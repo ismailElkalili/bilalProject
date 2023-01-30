@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/logout_system', [LoginController::class, 'logout']);
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //API
 Route::get("/data", [TeacherControllerApi::class, 'getData']);
 
