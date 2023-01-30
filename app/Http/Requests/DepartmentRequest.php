@@ -24,8 +24,7 @@ class DepartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'departmentName' => 'required|string|max:20',
-            'bossID' => 'required|gt:0'
+            'departmentName' => 'required|string|max:20'
         ];
     }
     public function messages()
@@ -33,9 +32,7 @@ class DepartmentRequest extends FormRequest
         return [
             'departmentName.required' => 'الرجاء ادخال الاسم',
             'departmentName.string' => 'يجب أن يكون اسم القسم نص وليس رقم',
-            'departmentName.max' => 'الاسم يجب أن يكون أقصر من 20 حرف',
-            'bossID.string' => 'الرجاء ادخال اسم مسؤول القسم',
-            'bossID.gt' => 'الرجاء اختيار مسؤول القسم',
+            'departmentName.max' => 'الاسم يجب أن يكون أقصر من 20 حرف'
 
         ];
     }

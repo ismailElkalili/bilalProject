@@ -12,7 +12,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class TeacherController extends Controller
 {
 
-       
+
     public function __construct()
     {
         $this->middleware('permission:teacher-list|product-create|product-edit|product-delete', ['only' => ['index', 'show']]);
@@ -44,7 +44,7 @@ class TeacherController extends Controller
 
     public function show($id)
     {
-       
+
         $commname = '';
         $comm = DB::table('committees')->get();
         $teacher = DB::table('teachers')->select(
@@ -69,7 +69,7 @@ class TeacherController extends Controller
             ->with('teacher', $teacher)
             ->with('commname', $commname)
             ->with('classes', $class)
-            ;
+        ;
 
     }
     public function create()
@@ -104,10 +104,12 @@ class TeacherController extends Controller
     {
         $teacher = DB::table('teachers')->where('id', $id)->first();
         $committees = DB::table('committees')->select('id', 'name')->get();
+        $qualification = ['بكالوريوس', 'دبلوم', 'ماجستير', 'ثانوية عامة'];
         // dd($teacher);
         return view('dashboard.teacher.edit')
             ->with("teacher", $teacher)
-            ->with("committees", $committees);
+            ->with("committees", $committees)
+            ->with('qualification', $qualification);
     }
 
     public function update(TeacherRequest $request)

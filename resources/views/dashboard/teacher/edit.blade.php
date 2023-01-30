@@ -78,12 +78,12 @@
             <div class="form-group">
                 <label>المؤهل العلمي</label>
                 <select class="  custom-select form-control-border" name="qualification" id="qualification">
-                    <option value="{{ $teacher->qualification }}">{{ $teacher->qualification }}</option>
-                    <option value="بكالوريوس">بكالوريوس</option>
-                    <option value="دبلوم">دبلوم</option>
-                    <option value="توجيهي">توجيهي</option>
-                    <option value="ثانوية">ثانوية</option>
-                    <option value="ماجستير">ماجستير</option>
+                    <option selected value="{{ $teacher->qualification }}">{{ $teacher->qualification }}</option>
+                    @foreach ($qualification as $qualfi)
+                        @if ($qualfi != $teacher->qualification)
+                            <option value="{{ $qualfi }}">{{ $qualfi }}</option>
+                        @endif
+                    @endforeach
                 </select>
             </div>
         </div>

@@ -34,15 +34,16 @@ class DepartmentController extends Controller
         FROM teachers AS t WHERE NOT(
          t.id in ( SELECT c.teacher_id FROM classes AS c WHERE c.teacher_id = t.id
          ) OR
-         t.id in ( SELECT d.teacher_id FROM departments AS d WHERE d.teacher_id = t.id   ))
-        ');
+         t.id in ( SELECT d.teacher_id FROM departments AS d WHERE d.teacher_id = t.id   
+         )AND
+          t.isDeleted=0)');
         $allTeacher = DB::table('teachers')->get();
         $classes = DB::table('classes')->where('department_id', '=', $departmentID)->get();
         return view('dashboard.department.show')
-        ->with('departments', $departments)
-        ->with('teachers', $teachers)
-        ->with('classes',$classes)
-        ->with('allTeacher',$allTeacher);
+            ->with('departments', $departments)
+            ->with('teachers', $teachers)
+            ->with('classes', $classes)
+            ->with('allTeacher', $allTeacher);
 
     }
     public function search(Request $request)
@@ -64,9 +65,10 @@ class DepartmentController extends Controller
         FROM teachers AS t WHERE NOT(
          t.id in ( SELECT c.teacher_id FROM classes AS c WHERE c.teacher_id = t.id
          ) OR
-         t.id in ( SELECT d.teacher_id FROM departments AS d WHERE d.teacher_id = t.id   ))
-        ');
-      
+         t.id in ( SELECT d.teacher_id FROM departments AS d WHERE d.teacher_id = t.id   
+         )AND
+          t.isDeleted=0)');
+
         return view('dashboard.department.create')->with('departments', $departments)->with('teachers', $teachers);
 
     }
@@ -95,14 +97,15 @@ class DepartmentController extends Controller
         FROM teachers AS t WHERE NOT(
          t.id in ( SELECT c.teacher_id FROM classes AS c WHERE c.teacher_id = t.id
          ) OR
-         t.id in ( SELECT d.teacher_id FROM departments AS d WHERE d.teacher_id = t.id   ))
-        ');
+         t.id in ( SELECT d.teacher_id FROM departments AS d WHERE d.teacher_id = t.id   
+         )AND
+          t.isDeleted=0)');
         $teacherClass = DB::table('teachers')->where('id', '=', $departments->teacher_id)->first();
-        
+
         return view('dashboard.department.edit')
-        ->with('departments', $departments)
-        ->with('teachers', $teachers)
-        ->with('teacherClass',$teacherClass);
+            ->with('departments', $departments)
+            ->with('teachers', $teachers)
+            ->with('teacherClass', $teacherClass);
 
     }
 
@@ -112,8 +115,8 @@ class DepartmentController extends Controller
             'name' => $request['departmentName'],
             'teacher_id' => $request['bossID'],
         ]);
-        
-        return  redirect('/departments');
+
+        return redirect('/departments');
 
     }
 

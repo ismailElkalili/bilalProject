@@ -28,14 +28,12 @@ class ClassesRequest extends FormRequest
         return [
             //
             'classesName' => 'required|max:50',
-            'teacherID' => 'required'
         ];
     }
     public function messages()
     {
         return [
             'classesName.required' => 'الرجاء ادخال اسم الحلقة',
-            'teacherID.required' => 'الرجاء إدخال محفظ الحلقة',
             'classesName.max' => 'يجب ان يكون اسم الحلقة أقل من 50 حرف ',
         ];
     }

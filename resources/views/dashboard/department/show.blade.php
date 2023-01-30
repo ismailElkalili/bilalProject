@@ -13,14 +13,12 @@
         <div class="form-group">
             <label for="bossID" class=" col-form-label">المسؤول</label>
             <select disabled style="text-align: right" class="form-control" name="bossID" id="bossID">
-                @if (empty($teachers))
+                @if (empty($allTeacher))
                     <option selected value="">لا يوجد مسؤول</option>
                 @else
-                    @foreach ($teachers as $teacher)
+                    @foreach ($allTeacher as $teacher)
                         @if ($teacher->id == $departments->teacher_id)
                             <option selected value="{{ $teacher->id }}">{{ $teacher->name }}</option>
-                        @else
-                            <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
                         @endif
                     @endforeach
                 @endif
