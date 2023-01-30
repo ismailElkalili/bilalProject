@@ -49,7 +49,7 @@ class ClassesController extends Controller
                 'class_id',
                 'state'
             )->where('class_id', '=', $classes->id)->where('state', '=', 0)->get();
-                
+
         return view('dashboard.classes.show')
             ->with('classes', $classes)
             ->with('teachers', $teachers)
@@ -77,8 +77,9 @@ class ClassesController extends Controller
         FROM teachers AS t WHERE NOT(
          t.id in ( SELECT c.teacher_id FROM classes AS c WHERE c.teacher_id = t.id
          ) OR
-         t.id in ( SELECT d.teacher_id FROM departments AS d WHERE d.teacher_id = t.id   ))
-        ');
+         t.id in ( SELECT d.teacher_id FROM departments AS d WHERE d.teacher_id = t.id   
+         )AND
+          t.isDeleted=0)');
         $departments = DB::table('departments')->get();
         return view('dashboard.classes.create')
             ->with('teachers', $teachers)
@@ -107,8 +108,9 @@ class ClassesController extends Controller
         FROM teachers AS t WHERE NOT(
          t.id in ( SELECT c.teacher_id FROM classes AS c WHERE c.teacher_id = t.id
          ) OR
-         t.id in ( SELECT d.teacher_id FROM departments AS d WHERE d.teacher_id = t.id   ))
-        ');
+         t.id in ( SELECT d.teacher_id FROM departments AS d WHERE d.teacher_id = t.id   
+         )AND
+          t.isDeleted=0)');
         $teacherClass = DB::table('teachers')->where('id', '=', $classes->teacher_id)->first();
 
         $departments = DB::table('departments')->get();
