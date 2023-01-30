@@ -42,7 +42,7 @@
                     <a class="col-md-3 btn btn-success"
                         style="margin-left: 15px;margin-right: 20px;align-items: center"href="{{ route('export-teachers') }}">تصدير
                         المحفظين</a>
-                    <button class=" col-md-3 btn btn-primary " style="align-items: center;">رفع ملف المحفظين</button>
+                    <button id="upload_file_btn" disabled class=" col-md-3 btn btn-primary " style="align-items: center;">رفع ملف المحفظين</button>
                 </div>
             </form>
 

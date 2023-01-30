@@ -249,181 +249,182 @@
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               @if (Gate::forUser(Auth::user())->allows('teacher-list') || Gate::forUser(Auth::user())->allows('teacher-create'))
-                        <li class="nav-item menu-close">
-                            <a href="#" class="nav-link ">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    المحفظين
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview" style="display: none;">
-                                @if (Gate::forUser(Auth::user())->allows('teacher-list'))
-                                    <li class="nav-item">
-                                        <a href="{{ URL('/teacher') }}" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>عرض المحفظين</p>
-                                        </a>
-                                    </li>
-                                @endif
-                                @if (Gate::forUser(Auth::user())->allows('teacher-create'))
-                                <li class="nav-item">
-                                    <a href="{{ URL('/teacher/create') }}" class="nav-link">
-                                        <i class="nav-icon far fa-plus-square"></i>
-                                        <p>إضافة محفظ</p>
-                                    </a>
-                                </li>
-                                @endif
-                            </ul>
-                        </li>
+                        @if (Gate::forUser(Auth::user())->allows('teacher-list') || Gate::forUser(Auth::user())->allows('teacher-create'))
+                            <li class="nav-item menu-close">
+                                <a href="#" class="nav-link ">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        المحفظين
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview" style="display: none;">
+                                    @if (Gate::forUser(Auth::user())->allows('teacher-list'))
+                                        <li class="nav-item">
+                                            <a href="{{ URL('/teacher') }}" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>عرض المحفظين</p>
+                                            </a>
+                                        </li>
+                                    @endif
+                                    @if (Gate::forUser(Auth::user())->allows('teacher-create'))
+                                        <li class="nav-item">
+                                            <a href="{{ URL('/teacher/create') }}" class="nav-link">
+                                                <i class="nav-icon far fa-plus-square"></i>
+                                                <p>إضافة محفظ</p>
+                                            </a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </li>
                         @endif
                         @if (Gate::forUser(Auth::user())->allows('committee-list') || Gate::forUser(Auth::user())->allows('committee-create'))
-                        <li class="nav-item menu-close">
-                            <a href="#" class="nav-link ">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    اللجان
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            
-                            <ul class="nav nav-treeview" style="display: none;">
-                                @if (Gate::forUser(Auth::user())->allows('committee-list'))
-                                <li class="nav-item">
-                                    <a href="{{ URL('/committees') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>عرض اللجان</p>
-                                    </a>
-                                </li>
-                                @endif
-                                @if (Gate::forUser(Auth::user())->allows('committee-create'))
-                                <li class="nav-item">
-                                    <a href="{{ URL('/committees/create') }}" class="nav-link">
-                                        <i class=" nav-icon far fa-plus-square"></i>
-                                        <p>إضافة لجان</p>
-                                    </a>
-                                </li>
-                                @endif
-                            </ul>
-                        </li>
-                        @endif
-                        @if (Gate::forUser(Auth::user())->allows('student-create') ||Gate::forUser(Auth::user())->allows('student-list') )
+                            <li class="nav-item menu-close">
+                                <a href="#" class="nav-link ">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        اللجان
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
 
-                        <li class="nav-item menu-close">
-                            <a href="#" class="nav-link ">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    الطلاب
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview" style="display: none;">
-                                @if (Gate::forUser(Auth::user())->allows('student-list'))
-                                <li class="nav-item">
-                                    <a href="{{ URL('/student') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>عرض الطلاب</p>
-                                    </a>
-                                </li>
-                                @endif
-                                @if (Gate::forUser(Auth::user())->allows('student-create'))
-                                <li class="nav-item">
-                                    <a href="{{ URL('/student/create') }}" class="nav-link">
-                                        <i class="nav-icon far fa-plus-square"></i>
-                                        <p>إضافة طالب</p>
-                                    </a>
-                                </li>
-                                @endif
-                            </ul>
-                        </li>
+                                <ul class="nav nav-treeview" style="display: none;">
+                                    @if (Gate::forUser(Auth::user())->allows('committee-list'))
+                                        <li class="nav-item">
+                                            <a href="{{ URL('/committees') }}" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>عرض اللجان</p>
+                                            </a>
+                                        </li>
+                                    @endif
+                                    @if (Gate::forUser(Auth::user())->allows('committee-create'))
+                                        <li class="nav-item">
+                                            <a href="{{ URL('/committees/create') }}" class="nav-link">
+                                                <i class=" nav-icon far fa-plus-square"></i>
+                                                <p>إضافة لجان</p>
+                                            </a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </li>
+                        @endif
+                        @if (Gate::forUser(Auth::user())->allows('student-create') || Gate::forUser(Auth::user())->allows('student-list'))
+
+                            <li class="nav-item menu-close">
+                                <a href="#" class="nav-link ">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        الطلاب
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview" style="display: none;">
+                                    @if (Gate::forUser(Auth::user())->allows('student-list'))
+                                        <li class="nav-item">
+                                            <a href="{{ URL('/student') }}" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>عرض الطلاب</p>
+                                            </a>
+                                        </li>
+                                    @endif
+                                    @if (Gate::forUser(Auth::user())->allows('student-create'))
+                                        <li class="nav-item">
+                                            <a href="{{ URL('/student/create') }}" class="nav-link">
+                                                <i class="nav-icon far fa-plus-square"></i>
+                                                <p>إضافة طالب</p>
+                                            </a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </li>
                         @endif
                         @if (Gate::forUser(Auth::user())->allows('department-list') || Gate::forUser(Auth::user())->allows('department-create'))
-                        <li class="nav-item menu-close">
-                            <a href="#" class="nav-link ">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    الأقسام
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview" style="display: none;">
-                                @if (Gate::forUser(Auth::user())->allows('department-list'))
-                                <li class="nav-item">
-                                    <a href="{{ URL('/departments') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>عرض الأقسام</p>
-                                    </a>
-                                </li>
-                                @endif
-                                @if (Gate::forUser(Auth::user())->allows('department-create'))
-                                <li class="nav-item">
-                                    <a href="{{ URL('/departments/create') }}" class="nav-link">
-                                        <i class="nav-icon far fa-plus-square"></i>
-                                        <p>إضافة قسم</p>
-                                    </a>
-                                </li>
-                                @endif
-                            </ul>
-                        </li>
+                            <li class="nav-item menu-close">
+                                <a href="#" class="nav-link ">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        الأقسام
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview" style="display: none;">
+                                    @if (Gate::forUser(Auth::user())->allows('department-list'))
+                                        <li class="nav-item">
+                                            <a href="{{ URL('/departments') }}" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>عرض الأقسام</p>
+                                            </a>
+                                        </li>
+                                    @endif
+                                    @if (Gate::forUser(Auth::user())->allows('department-create'))
+                                        <li class="nav-item">
+                                            <a href="{{ URL('/departments/create') }}" class="nav-link">
+                                                <i class="nav-icon far fa-plus-square"></i>
+                                                <p>إضافة قسم</p>
+                                            </a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </li>
                         @endif
 
                         @if (Gate::forUser(Auth::user())->allows('classes-list') || Gate::forUser(Auth::user())->allows('classes-create'))
-                        <li class="nav-item menu-close">
-                            
-                            <a href="#" class="nav-link ">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    الحلقات
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                           
-                            <ul class="nav nav-treeview" style="display: none;">
-                                @if (Gate::forUser(Auth::user())->allows('classes-list'))
-                                <li class="nav-item">
-                                    <a href="{{ URL('/classes') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>عرض الحلقات</p>
-                                    </a>
-                                </li>
-                                @endif
-                                @if (Gate::forUser(Auth::user())->allows('classes-create'))
-                                <li class="nav-item">
-                                    <a href="{{ URL('/classes/create') }}" class="nav-link">
-                                        <i class="nav-icon far fa-plus-square"></i>
-                                        <p>إضافة حلقة</p>
-                                    </a>
-                                </li>
-                                @endif
-                            </ul>
-                        </li>
+                            <li class="nav-item menu-close">
+
+                                <a href="#" class="nav-link ">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        الحلقات
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+
+                                <ul class="nav nav-treeview" style="display: none;">
+                                    @if (Gate::forUser(Auth::user())->allows('classes-list'))
+                                        <li class="nav-item">
+                                            <a href="{{ URL('/classes') }}" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>عرض الحلقات</p>
+                                            </a>
+                                        </li>
+                                    @endif
+                                    @if (Gate::forUser(Auth::user())->allows('classes-create'))
+                                        <li class="nav-item">
+                                            <a href="{{ URL('/classes/create') }}" class="nav-link">
+                                                <i class="nav-icon far fa-plus-square"></i>
+                                                <p>إضافة حلقة</p>
+                                            </a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </li>
                         @endif
-                        <li class="nav-item menu-close">
-                            <a href="#" class="nav-link ">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    الأرشيف
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview" style="display: none;">
-                                <li class="nav-item">
-                                    <a href="{{ URL('/archive/teacher') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>أرشيف المحفظين</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ URL('/archive/student') }}" class="nav-link">
-                                        <i class="nav-icon far fa-plus-square"></i>
-                                        <p>أرشيف الطلاب</p>
-                                    </a>
-                                </li>
+                        @if (Auth::user()->hasRole('Admin'))
+                            <li class="nav-item menu-close">
+                                <a href="#" class="nav-link ">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        الأرشيف
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview" style="display: none;">
+                                    <li class="nav-item">
+                                        <a href="{{ URL('/archive/teacher') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>أرشيف المحفظين</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ URL('/archive/student') }}" class="nav-link">
+                                            <i class="nav-icon far fa-plus-square"></i>
+                                            <p>أرشيف الطلاب</p>
+                                        </a>
+                                    </li>
 
-                            </ul>
-                        </li>
-
+                                </ul>
+                            </li>
+                        @endif
                     </ul>
                 </nav>
 

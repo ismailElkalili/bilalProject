@@ -8,5 +8,6 @@ function getUploadName() {
         }
         // alert(filename);
         document.getElementById('file_name').innerHTML = filename;
+        document.getElementById('upload_file_btn').disabled = false;
     }
 }
