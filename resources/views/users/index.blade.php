@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard_layout.dashboard_main')
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">

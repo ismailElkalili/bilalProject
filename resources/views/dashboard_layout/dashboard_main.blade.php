@@ -42,6 +42,7 @@
     <style type="text/css" id="operaUserStyle"></style>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite('resources/css/app.css')
 </head>
 
 <body class="hold-transition sidebar-mini" style="height: 100%;">
@@ -453,6 +454,8 @@
                 <div class="container-fluid">
                     <div class="row" style="position: static;  display: inline;">
                         @yield('forms')
+                        @yield('content')
+                        
                         <!-- /.row -->
                     </div><!-- /.container-fluid -->
                 </div>
