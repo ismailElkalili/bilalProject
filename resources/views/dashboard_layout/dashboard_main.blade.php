@@ -400,6 +400,7 @@
                             </ul>
                         </li>
                         @endif
+                        @if (Auth::user()->hasRole('Admin'))
                         <li class="nav-item menu-close">
                             <a href="#" class="nav-link ">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -424,7 +425,7 @@
 
                             </ul>
                         </li>
-
+                        @endif
                     </ul>
                 </nav>
 
