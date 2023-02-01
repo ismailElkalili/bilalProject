@@ -1,15 +1,14 @@
 @extends('dashboard_layout.dashboard_main')
 @section('content')
+<div dir="rtl" class="card">
     <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Role Management</h2>
-            </div>
-            <div class="pull-right">
+        <div style="margin-top: 15px" class="col-lg-12 margin-tb card-header">
+           
+            <h4 style="display: inline" class="pull-right">إدارة الصلاحيات</h4>
+
                 @can('role-create')
-                    <a class="btn btn-success" href="{{ route('roles.create') }}"> Create New Role</a>
+                    <a class="btn btn-success float-left" href="{{ route('roles.create') }}">انشاء صلاحية جديدة</a>
                 @endcan
-            </div>
         </div>
     </div>
     @if ($message = Session::get('success'))
@@ -19,9 +18,9 @@
     @endif
     <table class="table table-bordered">
         <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th width="280px">Action</th>
+            <th width="28px">الرقم</th>
+            <th>الإسم</th>
+            <th width="280px">العمليات</th>
         </tr>
 
         @foreach ($roles as $key => $role)
@@ -43,4 +42,5 @@
         @endforeach
     </table>
     {!! $roles->render() !!}
+</div>
 @endsection

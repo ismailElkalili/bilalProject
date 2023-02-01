@@ -1,13 +1,11 @@
 @extends('dashboard_layout.dashboard_main')
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Users Management</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
-            </div>
+<div dir="rtl" class="card">
+    <div  class="row">
+        <div class="card-header" style="margin-top: 15px" class="col-lg-12 margin-tb">
+            <h4 style="display: inline" class="pull-right">إدارة المستخدمين</h4>
+                <a class="btn btn-success float-left" href="{{ route('users.create') }}"> إنشاء مستخدم جديد</a>
+            
         </div>
     </div>
     @if ($message = Session::get('success'))
@@ -15,13 +13,13 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-    <table class="table table-bordered">
+    <table dir="rtl" class="table table-bordered">
         <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Roles</th>
-            <th width="280px">Action</th>
+            <th width="28px">الرقم</th>
+            <th>الاسم</th>
+            <th>البريد الالكتروني</th>
+            <th>الصلاحيات</th>
+            <th width="180px">العمليات</th>
         </tr>
         @foreach ($data as $key => $user)
             <tr>
@@ -36,7 +34,6 @@
                     @endif
                 </td>
                 <td>
-                    <a class="btn btn-info" href="{{ route('users.show', $user->id) }}">Show</a>
                     <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}">Edit</a>
                     {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id], 'style' => 'display:inline']) !!}
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
@@ -46,4 +43,5 @@
         @endforeach
     </table>
     {!! $data->render() !!}
+</div>
 @endsection

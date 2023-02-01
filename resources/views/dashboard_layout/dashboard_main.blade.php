@@ -401,30 +401,30 @@
                             </li>
                         @endif
                         @if (Auth::user()->hasRole('Admin'))
-                            <li class="nav-item menu-close">
-                                <a href="#" class="nav-link ">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>
-                                        الأرشيف
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview" style="display: none;">
-                                    <li class="nav-item">
-                                        <a href="{{ URL('/archive/teacher') }}" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>أرشيف المحفظين</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ URL('/archive/student') }}" class="nav-link">
-                                            <i class="nav-icon far fa-plus-square"></i>
-                                            <p>أرشيف الطلاب</p>
-                                        </a>
-                                    </li>
+                        <li class="nav-item menu-close">
+                            <a href="#" class="nav-link ">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    الأرشيف
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <li class="nav-item">
+                                    <a href="{{ URL('/archive/teacher') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>أرشيف المحفظين</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ URL('/archive/student') }}" class="nav-link">
+                                        <i class="nav-icon far fa-plus-square"></i>
+                                        <p>أرشيف الطلاب</p>
+                                    </a>
+                                </li>
 
-                                </ul>
-                            </li>
+                            </ul>
+                        </li>
                         @endif
                     </ul>
                 </nav>

@@ -1,15 +1,13 @@
 @extends('dashboard_layout.dashboard_main')
 @section('content')
+<div dir="rtl" style="padding: 15px" class="card">
     <div class="row">
         <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Create New User</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+            <div class=" card-header pull-left" style="margin-bottom: 25px">
+                <h2>إنشاء مستخدم جديد</h2>
             </div>
         </div>
-    </div>
+    
     @if (count($errors) > 0)
         <div class="alert alert-danger">
             <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -24,37 +22,39 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Name:</strong>
-                {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
+                <strong>الإسم:</strong>
+                {!! Form::text('name', null, ['placeholder' => 'الاسم', 'class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Email:</strong>
-                {!! Form::text('email', null, ['placeholder' => 'Email', 'class' => 'form-control']) !!}
+                <strong>البريد الالكتروني:</strong>
+                {!! Form::text('email', null, ['placeholder' => 'البريد الالكتروني', 'class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Password:</strong>
-                {!! Form::password('password', ['placeholder' => 'Password', 'class' => 'form-control']) !!}
+                <strong>كلمو المرور:</strong>
+                {!! Form::password('password', ['placeholder' => 'كلمة المرور', 'class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Confirm Password:</strong>
-                {!! Form::password('confirm-password', ['placeholder' => 'Confirm Password', 'class' => 'form-control']) !!}
+                <strong>تأكيد كلمة المرور:</strong>
+                {!! Form::password('confirm-password', ['placeholder' => 'تأكيد كلمة المرور', 'class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Role:</strong>
+                <strong>الصلاحيات:</strong>
                 {!! Form::select('roles[]', $roles, [], ['class' => 'form-control', 'multiple']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">إنشاء</button>
+            <a class="btn btn-primary" href="{{ route('users.index') }}"> رجوع</a>
         </div>
     </div>
     {!! Form::close() !!}
+</div>
 @endsection

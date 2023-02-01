@@ -1,12 +1,10 @@
 @extends('dashboard_layout.dashboard_main')
 @section('content')
+<div dir="rtl" class="card" style="padding: 15px">
     <div class="row">
         <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Edit Role</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
+            <div style="margin-bottom: 15px" class="col-lg-12 margin-tb card-header" class="pull-left">
+                <h2>تعديل الصلاحية</h2>
             </div>
         </div>
     </div>
@@ -24,8 +22,8 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Name:</strong>
-                {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
+                <strong>اسم الصلاحية:</strong>
+                {!! Form::text('name', null, ['placeholder' => 'اسم الصلاحية', 'class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -40,8 +38,10 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">تعديل</button>
+            <a class="btn btn-primary" href="{{ route('roles.index') }}">رجوع</a>
         </div>
     </div>
     {!! Form::close() !!}
+</div>
 @endsection
